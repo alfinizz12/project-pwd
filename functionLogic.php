@@ -58,8 +58,6 @@
         global $connection;
 
         // ambil id dari session;
-        $us = mysqli_query($connection, "SELECT id FROM user WHERE username = '$session'");
-        $user_id = mysqli_fetch_array($us);
 
         $name = stripslashes($_POST['name']);
         $phone_num = $_POST['phone'];
@@ -124,7 +122,7 @@
                 '$payment',
                 '$total',
                 '$id_room',
-                '$user_id[0]'
+                '$session'
             )"
         );
 

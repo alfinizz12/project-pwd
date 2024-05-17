@@ -5,7 +5,7 @@ require  'functionLogic.php';
 
 
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
     $must_login = "loginfirst";
@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if(isset($_POST['booking-button'])){
-    if(booking($_SESSION["username"],$_POST) > 0){
+    if(booking($_SESSION["id"],$_POST) > 0){
         echo "<script>
             alert('Berhasil booking!, silahkan cek di profil anda!');
         </script>";

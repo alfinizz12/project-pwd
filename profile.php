@@ -4,7 +4,7 @@ session_start();
 require 'functionLogic.php';
 
 // agar tidak bisa diakses langsung melalui URL
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
 }
 
@@ -23,23 +23,26 @@ if(isset($_POST['save'])){
 }
 
 // mengambil user id dengan session
-$uname = $_SESSION['username'];
-$user_id = mysqli_query($connection, "SELECT id FROM user WHERE username = '$uname'");
-$id_self = mysqli_fetch_array($user_id);
+$id = $_SESSION['id'];
+$user = $connection->query("SELECT * FROM user WHERE id = '$id'");
+$user_data = $user->fetch_object();
 
-// mengambil user email dengan user id
-$email_user = mysqli_query($connection, "SELECT email FROM user WHERE username = '$uname'");
-$email = mysqli_fetch_array($email_user);
+// $user_id = mysqli_query($connection, "SELECT id FROM user WHERE username = '$uname'");
+// $id_self = mysqli_fetch_array($user_id);
 
-$pass_user = mysqli_query($connection, "SELECT password FROM user WHERE username = '$uname'");
-$password = mysqli_fetch_array($pass_user);
+// // mengambil user email dengan user id
+// $email_user = mysqli_query($connection, "SELECT email FROM user WHERE username = '$uname'");
+// $email = mysqli_fetch_array($email_user);
 
-// profile pict dari database 
-$prof_user = mysqli_query($connection, "SELECT photo FROM user WHERE username = '$uname'");
-$photo = mysqli_fetch_array($prof_user);
+// $pass_user = mysqli_query($connection, "SELECT password FROM user WHERE username = '$uname'");
+// $password = mysqli_fetch_array($pass_user);
 
-// perintah memilih row pada tabel resort
-$resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$id_self[0]' ");
+// // profile pict dari database 
+// $prof_user = mysqli_query($connection, "SELECT photo FROM user WHERE username = '$uname'");
+// $photo = mysqli_fetch_array($prof_user);
+
+// // perintah memilih row pada tabel resort
+$resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ");
 
 // menhitung jumlah row pada table
 $count_data = mysqli_num_rows($resort_data);
@@ -65,17 +68,17 @@ $count_data = mysqli_num_rows($resort_data);
     </div>
     <div class="prof-inside">
         <div class="my-profile">
-            <img src="img/<?= $photo[0] ?>">
+            <img src="img/<?= $user_data->photo ?>">
             <div class="uname-profile">
                 <p>Username</p>
                 <label for="">
-                    <h3><?= $_SESSION['username'] ?></h3>
+                    <h3><?= $user_data->username ?></h3>
                 </label>
             </div>
             <div class="uname-profile email-prof">
                 <p>Email</p>
                 <label for="">
-                    <p><?= $email[0] ?></p>
+                    <p><?= $user_data->email ?></p>
                 </label>
             </div>
             <button class="editprof" onclick="popup()">edit</button>
@@ -88,7 +91,8 @@ $count_data = mysqli_num_rows($resort_data);
             <div class="act-bookinglist">
                 <div class="vertical-menu">
                     <?php if (isset($def)) echo $def; ?>
-                    <?php while ($resort_data_fetch = mysqli_fetch_assoc($resort_data)) : ?>
+                    <?php while ($resort_data_fetch = mysqli_fetch_array($resort_data)) : ?>
+
                         <?php
                         if ($resort_data_fetch['resort_id'] == 1) {
                             $room_type = "Standard";
@@ -140,7 +144,7 @@ $count_data = mysqli_num_rows($resort_data);
 
             <?php
             // Re-fetching the data for the second loop
-            $resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$id_self[0]' ");
+            $resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ");
             ?>
             <div class="rst-bookinglist">
                 
@@ -205,14 +209,14 @@ $count_data = mysqli_num_rows($resort_data);
             <div class="close-btn" onclick="popup()">&times;</div>
             <h2>Edit My Profile</h2>
             <form action="" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $id_self[0]?>">
-                <input type="hidden" name="email" value="<?= $email[0]?>">
-                <input type="hidden" name="password" value="<?= $password[0] ?>">
-                <input type="hidden" name="fotoLama" value="<?=$profpic[0]?>">
-                <img class="image-edit" src="img/<?= $photo[0]?>" alt="" id="prof-pic">
+                <input type="hidden" name="id" value="<?= $user_data->id?>">
+                <input type="hidden" name="email" value="<?= $user_data_email?>">
+                <input type="hidden" name="password" value="<?= $user_data->password ?>">
+                <input type="hidden" name="fotoLama" value="<?=$user_data->photo?>">
+                <img class="image-edit" src="img/<?= $user_data->photo?>" alt="" id="prof-pic">
                 <label class="update-img" for="input-foto">Update Image</label>
                 <input class="link-img-update" type="file" accept="img/jpeg, img/jpg, img/png" name="foto" id="input-foto">
-                <input type="text" name="username" class="input-field" placeholder="Username" value="<?=$uname?>" required>
+                <input type="text" name="username" class="input-field" placeholder="Username" value="<?=$user_data->username?>" required>
                 <button type="submit" class="login-button" name="save">Save</button>
             </form>
         </div>
