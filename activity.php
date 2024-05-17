@@ -78,7 +78,7 @@ if (!isset($_SESSION['username'])) {
                     <li>Capture the magic with photography and videography</li>
                 </ul>
                 <h5><b>Start from Rp500.000/pax</b></h5>
-                <a class="button" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Reserve</a>
+                <a class="button" onclick="document.getElementById('<?=$must_login?>').style.display='block'">Reserve</a>
             </div>
             <img src="img/dive.png" alt="">
         </div>
