@@ -3,8 +3,11 @@ session_start();
 
 require  'functionLogic.php';
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 42423c79b7a51294ac1a1be4a225127a90e41b5b
 if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
