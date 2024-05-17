@@ -193,9 +193,3 @@
         mysqli_query($connection, "UPDATE user SET  username = '$username', photo = '$foto' WHERE id = '$id'");
         return mysqli_affected_rows($connection);
     }
-
-<<<<<<< HEAD
-?>
-=======
-?>
->>>>>>> 42423c79b7a51294ac1a1be4a225127a90e41b5b
