@@ -71,9 +71,20 @@
         } else {
             $request = $_POST['request'];
         }
-
         $payment = $_POST['payment'];
         $resort_id = $_POST['tiperoom'];
+
+        // cek apakah date <= sekarang dan date < date_out
+        $date_cek = new DateTime($date);
+        $date_out_cek = new DateTime($date_out);
+        $date_now = new DateTime();
+
+        if($date_cek < $date_now){
+            return false;
+        } else if ($date_cek > $date_out_cek){
+            return false;
+        }
+
 
         // mengubah nama kamar menjadi id room
         if($resort_id == "Standard"){
@@ -149,7 +160,7 @@
             return false;
         }
     
-        if($ukuranFile > 3000000){
+        if($ukuranFile > 9000000){
             echo "<script>
             alert('Ukuran foto terlalu besar');
             </script>";
@@ -163,6 +174,26 @@
         move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
     
         return $namaFileBaru;
+    }
+
+
+    function update($data){
+        global $connection;
+
+        $id = $data['id'];
+        $username = htmlspecialchars($data['username']);
+        $password = htmlspecialchars($data['password']);
+        $email = htmlspecialchars($data['email']);
+        $fotoLama = $data['fotoLama'];
+
+        if($_FILES['foto']['error'] === 4){
+            $foto = $fotoLama;
+        } else {
+            $foto = upload();
+        }
+
+        mysqli_query($connection, "UPDATE user SET  username = '$username', photo = '$foto' WHERE id = '$id'");
+        return mysqli_affected_rows($connection);
     }
 
 ?>
