@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
 } else {
