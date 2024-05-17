@@ -8,7 +8,6 @@ require  'functionLogic.php';
 if (!isset($_SESSION['username'])) {
     $login_text = "Login";
     $login_class = "login-btn";
-
     $must_login = "loginfirst";
 } else {
     $login_class = " ";
@@ -21,6 +20,13 @@ if (!isset($_SESSION['username'])) {
 
 if(isset($_POST['booking-button'])){
     if(booking($_SESSION["username"],$_POST) > 0){
+        echo "<script>
+            alert('Berhasil booking!, silahkan cek di profil anda!');
+        </script>";
+    } else {
+        echo "<script>
+            alert('Gagal booking!, silahkan cek kembali tanggal yang diinput!');
+        </script>";
     }
 }
 
@@ -101,7 +107,7 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-utensils"></i> Breakfast 2 pax</p>
                     <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p><br>
                     <h5><b>Rp775.000/night</b></h5>
-                    <a href="#" class="room-book">Booking</a>
+                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -113,7 +119,7 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-utensils"></i> Breakfast 4 pax</p>
                     <p><i class="fa-solid fa-smoking"></i> Smoking balcony</p><br>
                     <h5><b>Rp1.050.000/night</b></h5>
-                    <a href="#" class="room-book">Booking</a>
+                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
                 </div>
             </div>
         </div>
@@ -163,7 +169,7 @@ if(isset($_POST['booking-button'])){
                     <span onclick="document.getElementById('bookform').style.display='none'" class="w3-button w3-xlarge w3-display-topright cancel-top">&times;</span>
                     <h2><b>Booking Form</b></h2>
                 </div>
-                <form class="resort-booking" action="" method="post">
+                <form class="resort-booking" action="resort.php" method="post">
                     <label for="name">Full Name</label><br>
                     <input class="input-booking fullname-input" type="text" placeholder="Insert Your Full Name" name="name" id="name" required>
                     <div class="row"><br>
@@ -223,7 +229,7 @@ if(isset($_POST['booking-button'])){
 
                     <div class="w3-container w3-padding-16">
                         <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
-                        <button class="form-book-btn" type="submit" name="booking-button">Booking</button>
+                        <button class="form-book-btn" type="submit" name="booking-button" onclick="return confirm('Yakin data yang anda masukkan sudah benar?')">Booking</button>
                     </div>
                 </form>
 
