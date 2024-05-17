@@ -1,20 +1,14 @@
 <?php
 session_start();
-include "functionLogic.php";  
-if(isset($_SESSION['username'])){
-  $username = $_SESSION['username'];
-  $photo = $connection->query("SELECT photo FROM user where username = '$username'");
-  $profpic = $photo->fetch_object();
-}
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
   $login_text = "Login";
   $login_class = "login-btn";
 } else {
   $login_class = " ";
   $login_text = " ";
   $profile = "<form action='profile.php'>
-  <button class='profile'>Profile <img class='imgprof' src='img/{$profpic->photo}' alt=''></button>
+  <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
 </form>";
 }
 
