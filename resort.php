@@ -8,12 +8,15 @@ require  'functionLogic.php';
 if (!isset($_SESSION['username'])) {
     $login_text = "Login";
     $login_class = "login-btn";
+
+    $must_login = "loginfirst";
 } else {
     $login_class = " ";
     $login_text = " ";
     $profile = "<form action='profile.php'>
         <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
     </form>";
+    $must_login = "bookform";
 }
 
 if(isset($_POST['booking-button'])){
@@ -86,7 +89,7 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-utensils"></i> Without breakfast</p>
                     <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p><br>
                     <h5><b>Rp450.000/night</b></h5>
-                    <a href="#" class="room-book" onclick="document.getElementById('bookform').style.display='block'">Booking</a>
+                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
