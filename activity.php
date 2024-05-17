@@ -3,16 +3,12 @@ session_start();
 if (!isset($_SESSION['username'])) {
     $login_text = "Login";
     $login_class = "login-btn";
-
-    $must_login = "loginfirst";
 } else {
     $login_class = " ";
     $login_text = " ";
     $profile = "<form action='profile.php'>
         <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
     </form>";
-
-    $must_login = "bookform";
 }
 ?>
 
@@ -78,7 +74,7 @@ if (!isset($_SESSION['username'])) {
                     <li>Capture the magic with photography and videography</li>
                 </ul>
                 <h5><b>Start from Rp500.000/pax</b></h5>
-                <a class="button" onclick="document.getElementById('<?=$must_login?>').style.display='block'">Reserve</a>
+                <a class="button" onclick="document.getElementById('loginfirst').style.display='block'">Reserve</a>
             </div>
             <img src="img/dive.png" alt="">
         </div>
