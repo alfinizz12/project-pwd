@@ -1,8 +1,7 @@
 <?php
     session_start();
-    
 
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['id'])){
         header("Location: home.php");
     }
 
@@ -17,7 +16,10 @@
 
     if(isset($_POST['login'])){
         if(login($_POST["username"], $_POST['password'])){
-            $_SESSION['username'] = $_POST["username"];
+            $username = $_POST['username'];
+            $user = $connection->query("SELECT * FROM user WHERE username = '$username'");
+            $user_data = $user->fetch_object();
+            $_SESSION['id'] = $user_data->id;
             header('Location: home.php');
             exit;
         }
