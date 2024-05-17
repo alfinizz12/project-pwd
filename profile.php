@@ -11,12 +11,12 @@ if (!isset($_SESSION['id'])) {
 if(isset($_POST['save'])){
     if(update($_POST)> 0){
         echo "<script>
-            alert('Berhasil booking!, silahkan cek di profil anda!');
+            alert('Berhasil update!');
         </script>";
         header("Location: profile.php");
     } else {
         echo "<script>
-            alert('Gagal booking!, silahkan cek kembali tanggal yang diinput!');
+            alert('Gagal update!');
         </script>";
     }
 
@@ -210,8 +210,6 @@ $count_data = mysqli_num_rows($resort_data);
             <h2>Edit My Profile</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user_data->id?>">
-                <input type="hidden" name="email" value="<?= $user_data_email?>">
-                <input type="hidden" name="password" value="<?= $user_data->password ?>">
                 <input type="hidden" name="fotoLama" value="<?=$user_data->photo?>">
                 <img class="image-edit" src="img/<?= $user_data->photo?>" alt="" id="prof-pic">
                 <label class="update-img" for="input-foto">Update Image</label>

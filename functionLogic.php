@@ -11,9 +11,9 @@
 
         // konfirmasi password
         if($password !== $password_confirm){
-            // echo "<script>
-            //     alert('Password tidak sesuai')
-            // </script>";
+            echo "<script>
+                 alert('Password tidak sesuai')
+            </script>";
             return false;
         }
 
@@ -21,9 +21,9 @@
         $check_username = $connection->query("SELECT * FROM user where username = '$username'");
 
         if(mysqli_fetch_assoc($check_username)){
-            // echo "<script>
-            //     alert('Username sudah tersedia')
-            // </script>";
+            echo "<script>
+                 alert('Username sudah tersedia')
+            </script>";
             return false;
         }
 
@@ -31,7 +31,7 @@
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         // masukkan data ke dalam database 
-        $connection->query("INSERT INTO user VALUES('', '$email' , '$username', '$password')");
+        $connection->query("INSERT INTO user VALUES('', '$email' , '$username', '$password', '')");
 
         return mysqli_affected_rows($connection);
     }
@@ -179,11 +179,16 @@
         global $connection;
 
         $id = $data['id'];
-        $username = htmlspecialchars($data['username']);
-        $password = htmlspecialchars($data['password']);
-        $email = htmlspecialchars($data['email']);
+        $username = strtolower(stripslashes($data['username']));
         $fotoLama = $data['fotoLama'];
 
+        $check_username = $connection->query("SELECT * FROM user WHERE username = '$username'");
+        if (mysqli_fetch_assoc($check_username)) {
+            echo "<script>
+                alert('Username sudah tersedia')
+            </script>";
+            return false;
+        }
         if($_FILES['foto']['error'] === 4){
             $foto = $fotoLama;
         } else {
