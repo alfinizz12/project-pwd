@@ -27,20 +27,6 @@ $id = $_SESSION['id'];
 $user = $connection->query("SELECT * FROM user WHERE id = '$id'");
 $user_data = $user->fetch_object();
 
-// $user_id = mysqli_query($connection, "SELECT id FROM user WHERE username = '$uname'");
-// $id_self = mysqli_fetch_array($user_id);
-
-// // mengambil user email dengan user id
-// $email_user = mysqli_query($connection, "SELECT email FROM user WHERE username = '$uname'");
-// $email = mysqli_fetch_array($email_user);
-
-// $pass_user = mysqli_query($connection, "SELECT password FROM user WHERE username = '$uname'");
-// $password = mysqli_fetch_array($pass_user);
-
-// // profile pict dari database 
-// $prof_user = mysqli_query($connection, "SELECT photo FROM user WHERE username = '$uname'");
-// $photo = mysqli_fetch_array($prof_user);
-
 // // perintah memilih row pada tabel resort
 $resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ");
 
