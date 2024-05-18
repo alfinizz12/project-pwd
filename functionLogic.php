@@ -174,8 +174,7 @@
         return $namaFileBaru;
     }
 
-
-    function update($data){
+    function updateResort($data){
         global $connection;
 
         $id = $data['id'];
@@ -196,5 +195,39 @@
         }
 
         mysqli_query($connection, "UPDATE user SET  username = '$username', photo = '$foto' WHERE id = '$id'");
+        return mysqli_affected_rows($connection);
+    }
+
+    function act_booking($session, $data){
+        global $connection;
+
+        $name = stripslashes($_POST['name']);
+        $phone_num = $_POST['phone_num'];
+        $date = $_POST["date"];
+        $payment = $_POST['payment'];
+        $act_id = $_POST['act_id'];
+
+        if($act_id == "Diving"){
+            $id_act = 1;
+        } else if ($act_id == "Surfing"){
+            $id_act = 2;
+        } else if($act_id == "Snorkeling") {
+            $id_act = 3;
+        } else if($act_id == "Jet Ski") {
+            $id_act = 4;
+        }
+
+        $booking = $connection->query("INSERT INTO act_booking VALUES
+            (
+                '',
+                '$name',
+                '$phone_num',
+                '$date',
+                '$payment',
+                '$id_act',
+                '$session'
+            )"
+        );
+
         return mysqli_affected_rows($connection);
     }

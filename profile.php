@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
 }
 
 if(isset($_POST['save'])){
-    if(update($_POST)> 0){
+    if(updateResort($_POST)> 0){
         echo "<script>
             alert('Berhasil update!');
         </script>";
@@ -19,7 +19,6 @@ if(isset($_POST['save'])){
             alert('Gagal update!');
         </script>";
     }
-
 }
 
 // mengambil user id dengan session
