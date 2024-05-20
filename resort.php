@@ -91,9 +91,9 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-user-group"></i> 2 adults 1 kids</p>
                     <p><i class="fa-solid fa-bed"></i> Single queen bed/twin bed</p>
                     <p><i class="fa-solid fa-utensils"></i> Without breakfast</p>
-                    <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p><br>
+                    <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p>
                     <h5><b>Rp450.000/night</b></h5>
-                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
+                    <a href="#" class="room-book" onclick=modalPopUp(1)>Booking</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -103,9 +103,9 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-user-group"></i> 4 adults</p>
                     <p><i class="fa-solid fa-bed"></i> Single king bed/twin bed</p>
                     <p><i class="fa-solid fa-utensils"></i> Breakfast 2 pax</p>
-                    <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p><br>
+                    <p><i class="fa-solid fa-ban-smoking"></i> Non-smoking</p>
                     <h5><b>Rp775.000/night</b></h5>
-                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
+                    <a href="#" class="room-book" onclick=modalPopUp(2)>Booking</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -115,11 +115,12 @@ if(isset($_POST['booking-button'])){
                     <p><i class="fa-solid fa-user-group"></i> 4 adults 1 kids</p>
                     <p><i class="fa-solid fa-bed"></i> 2 rooms king size bed</p>
                     <p><i class="fa-solid fa-utensils"></i> Breakfast 4 pax</p>
-                    <p><i class="fa-solid fa-smoking"></i> Smoking balcony</p><br>
+                    <p><i class="fa-solid fa-smoking"></i> Smoking balcony</p>
                     <h5><b>Rp1.050.000/night</b></h5>
-                    <a href="#" class="room-book" onclick="document.getElementById('<?= $must_login ?>').style.display='block'">Booking</a>
+                    <a href="#" class="room-book" onclick=modalPopUp(3)>Booking</a>
                 </div>
             </div>
+            
         </div>
     </div>
 
@@ -190,7 +191,7 @@ if(isset($_POST['booking-button'])){
                         <div class="type-number">
                             <div class="input-booking">
                                 <select class="tiperoom" name="tiperoom" id="tiperoom" required>
-                                    <option selected>Choose room type... </option>
+                                    <option>Choose room type... </option>
                                     <option value="Standard">Standard</option>
                                     <option value="Deluxe">Deluxe</option>
                                     <option value="Suite">Suite</option>
@@ -225,7 +226,7 @@ if(isset($_POST['booking-button'])){
                         </div>
                     </div>
 
-                    <div class="w3-container w3-padding-16">
+                    <div class="w3-container w3-padding-16 button-booking-form">
                         <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
                         <button class="form-book-btn" type="submit" name="booking-button" onclick="return confirm('Yakin data yang anda masukkan sudah benar?')">Booking</button>
                     </div>
@@ -277,6 +278,23 @@ if(isset($_POST['booking-button'])){
                 input.value = currentValue - 1;
             }
         }
+
+        function modalPopUp(data){
+            var id = data;
+            document.getElementById('<?= $must_login ?>').style.display='block';
+            // untuk mengambil id berdasarkan tipe room
+            if(id == 1){
+                var dropdown = document.getElementById("tiperoom");
+                dropdown.selectedIndex = 1;
+            } else if (id == 2){
+                var dropdown = document.getElementById("tiperoom");
+                dropdown.selectedIndex = 2;
+            } else if(id == 3){
+                var dropdown = document.getElementById("tiperoom");
+                dropdown.selectedIndex = 3;
+            }
+        }
+
     </script>
 
 </body>
