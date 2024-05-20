@@ -22,7 +22,8 @@ if (!isset($_SESSION['id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
   <title>Bluebuk</title>
 </head>
@@ -33,9 +34,9 @@ if (!isset($_SESSION['id'])) {
       <div class="container-fluid row">
         <div class="col-3">
           <a class="navbar-brand" href="#">
-            <!-- <img src="icon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
             Bluebuk.
           </a>
+
         </div>
         <div class="col-6 text-center">
           <ul class="nav justify-content-center ms-4">
@@ -53,7 +54,6 @@ if (!isset($_SESSION['id'])) {
             </li>
           </ul>
         </div>
-        <!-- <div class="col-2"></div> -->
         <div class="col-3">
           <a class="<?= $login_class ?>" id="login" href="login.php"><?= $login_text ?></a>
           <?php if (isset($profile)) echo $profile ?>
@@ -76,7 +76,7 @@ if (!isset($_SESSION['id'])) {
 
   <div class="act">
     <h1>Our Activity</h1>
-    <h5>Make waves of memories at our beachside getaway!</h5>
+    <h4>Make waves of memories at our beachside getaway!</h4>
     <div class="row">
       <div class="act-img col-3">
         <a href="activity.php"><img src="img/2.png" class="card-img-top" alt="HTML tutorial"></a>
@@ -124,8 +124,8 @@ if (!isset($_SESSION['id'])) {
         </div>
       </div>
       <div class="caption">
-        <h1>Bluebuk Resort</h1>
-        <h4>A perfect place for your vacation stay.</h4>
+        <h1><b>Bluebuk Resort</b></h1>
+        <h3>A perfect place for your vacation stay.</h3>
         <form action="resort.php">
           <button class="book">Learn More</button>
         </form>
@@ -155,7 +155,7 @@ if (!isset($_SESSION['id'])) {
         <li>Shopping and Dining: Immerse yourself in the local culture with visits to charming seaside towns, artisanal markets, and authentic restaurants serving regional specialties.</li>
       </ul>
     </div>
-    
+
     <div class="reason col">
       <h4>Discover Our Amenities</h4>
       <p>From luxurious accommodations to world-class amenities, Bluebuk Beach & Resort has something for everyone to enjoy:</p>
@@ -171,7 +171,58 @@ if (!isset($_SESSION['id'])) {
   <div class="reason">
     <h4>Plan Your Stay</h4>
     <p>Ready to experience the beauty and luxury of Bluebuk Beach & Resort? Explore our website to learn more about our accommodations, amenities, and <br>special offers. Book your stay today and start counting down the days until your dream beach getaway.</p>
+  </div><br>
+
+  <h1 style="text-align: center;">Our Customer Reviews</h1>
+  <div class="scrollrating">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3>Winter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p>This is a Very nice place to stay!</p><br>
+          <h6>2 weeks ago</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text within a card body.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text within a card body.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text within a card body.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text within a card body.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text within a card body.
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
 
   <footer>
     <div class="row">
