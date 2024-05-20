@@ -1,5 +1,7 @@
 <?php
 session_start();
+require 'functionLogic.php';
+
 
 if (!isset($_SESSION['id'])) {
   $login_text = "Login";
@@ -7,8 +9,11 @@ if (!isset($_SESSION['id'])) {
 } else {
   $login_class = " ";
   $login_text = " ";
+  $id = $_SESSION['id'];
+  $photo = $connection->query("SELECT * FROM user WHERE id = $id");
+  $img_profile = $photo->fetch_object();
   $profile = "<form action='profile.php'>
-  <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
+  <button class='profile'>Profile <img class='imgprof' src='img/<?=$img_profile->photo?>' alt=''></button>
 </form>";
 }
 
@@ -64,8 +69,8 @@ if (!isset($_SESSION['id'])) {
 
   <div class="upperpage">
     <h1>Bluebuk.</h1>
-    <form class="box">
-      <input type="search" placeholder="Search">
+    <form class="box" id="search">
+      <input id="searchForm" type="search" placeholder="Search" autocomplete="off">
       <a href="">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -175,7 +180,7 @@ if (!isset($_SESSION['id'])) {
 
   <h1 style="text-align: center;">Our Customer Reviews</h1>
   <div class="scrollrating">
-    <div class="col">
+    <div id="review" class="col">
       <div class="card">
         <div class="card-body">
           <h3>Winter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
@@ -262,6 +267,35 @@ if (!isset($_SESSION['id'])) {
     </div>
 
   </footer>
+
+  <script>
+    document.getElementById('searchForm').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') { // Periksa apakah tombol yang ditekan adalah Enter
+        event.preventDefault(); // Mencegah perilaku default dari tombol Enter
+
+        var inputText = document.getElementById('searchForm').value.toLowerCase(); // Mengambil nilai dari input dan mengubahnya menjadi huruf kecil
+        var keywords = inputText.split(' '); // Memecah kalimat menjadi kata-kata
+
+        // Definisikan kata kunci dan halaman yang sesuai
+        var pages = {
+          'home': 'home.php',
+          'resort': 'resort.php',
+          'activity': 'activity.php',
+          }
+        };
+
+        // Cari kata kunci dalam input
+        for (var i = 0; i < keywords.length; i++) {
+          var keyword = keywords[i];
+          if (pages[keyword]) {
+            window.location.href = pages[keyword];
+            return; // Hentikan eksekusi lebih lanjut setelah redirect
+          }
+        }
+        // Jika tidak ada kata kunci yang cocok, tampilkan pesan kesalahan
+        alert('Halaman tidak ditemukan!');
+    });
+  </script>
 </body>
 
 </html>

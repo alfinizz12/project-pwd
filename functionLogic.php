@@ -28,6 +28,7 @@ function register($data)
         return false;
     }
 
+
     // enkripsi password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -175,7 +176,7 @@ function upload()
     $namaFileBaru = uniqid();
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
-    move_uploaded_file($tmpName, 'img/'.$namaFileBaru);
+    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
     return $namaFileBaru;
 }
@@ -187,7 +188,7 @@ function updateResort($data)
 
     $id = $data['id'];
     $namaLama = strtolower(stripslashes($data['namaLama']));
-    $namaBaru =strtolower(stripslashes($data['namaBaru']));
+    $namaBaru = strtolower(stripslashes($data['namaBaru']));
     $fotoLama = $data['fotoLama'];
 
     if ($_FILES['foto']['error'] === 4) {
@@ -196,7 +197,7 @@ function updateResort($data)
         $foto = upload();
     }
 
-    if($namaLama !== $namaBaru){
+    if ($namaLama !== $namaBaru) {
         $check_username = $connection->query("SELECT * FROM user WHERE username = '$namaBaru'");
         if (mysqli_fetch_assoc($check_username)) {
             echo "<script>
@@ -210,7 +211,8 @@ function updateResort($data)
     return mysqli_affected_rows($connection);
 }
 
-function act_booking($session, $data){
+function act_booking($session, $data)
+{
     global $connection;
 
     $name = stripslashes($_POST['fullname']);
@@ -219,17 +221,18 @@ function act_booking($session, $data){
     $payment = $_POST['paycard'];
     $act_id = $_POST['tipeact'];
 
-    if($act_id == "Diving"){
+    if ($act_id == "Diving") {
         $id_act = 1;
-    } else if ($act_id == "Surfing"){
+    } else if ($act_id == "Surfing") {
         $id_act = 2;
-    } else if($act_id == "Snorkeling") {
+    } else if ($act_id == "Snorkeling") {
         $id_act = 3;
-    } else if($act_id == "Jet Ski") {
+    } else if ($act_id == "Jet Ski") {
         $id_act = 4;
     }
 
-    $booking = $connection->query("INSERT INTO activity_booking VALUES
+    $booking = $connection->query(
+        "INSERT INTO activity_booking VALUES
         (
             '',
             '$name',

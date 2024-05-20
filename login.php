@@ -12,6 +12,7 @@
             header ('Location: login.php');
             exit;
         }
+        $err_mess = "Username sudah tersedia atau Password tidak sesuai";
     }
 
     if(isset($_POST['login'])){
@@ -70,7 +71,7 @@
                 <input type="email" name="email" class="input-field" placeholder="Email" required />
                 <input type="password" name="password" class="input-field" placeholder="Password" required />
                 <input type="password" name="password_confirm" class="input-field" placeholder="Confirm Password" required>
-                <?php if(isset($mess)) echo $mess; ?>
+                <p class="passwrong"><?php if(isset($err_mess)) echo $err_mess; ?></p>
                 <button type="submit" class="login-button" name="register">Register</button>
             </form>
         </div>
