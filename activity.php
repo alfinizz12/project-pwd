@@ -1,15 +1,30 @@
 <?php
-session_start();
-if (!isset($_SESSION['id'])) {
-    $login_text = "Login";
-    $login_class = "login-btn";
-} else {
-    $login_class = " ";
-    $login_text = " ";
-    $profile = "<form action='profile.php'>
-        <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
-    </form>";
-}
+    session_start();
+    include 'functionLogic.php';
+    if (!isset($_SESSION['id'])) {
+        $login_text = "Login";
+        $login_class = "login-btn";
+        $must_login = "loginfirst";
+    } else {
+        $login_class = " ";
+        $login_text = " ";
+        $profile = "<form action='profile.php'>
+            <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
+        </form>";
+        $must_login = "bookform";
+    }
+
+    if(isset($_POST['booking-button'])){
+        if(act_booking($_SESSION["id"],$_POST) > 0){
+            echo "<script>
+                alert('Berhasil booking!, silahkan cek di profil anda!');
+            </script>";
+        } else {
+            echo "<script>
+                alert('Gagal booking!');
+            </script>";
+        }
+    }
 ?>
 
 
@@ -61,6 +76,15 @@ if (!isset($_SESSION['id'])) {
         </nav>
     </header>
 
+<!-- 
+    <div class="act-list">
+        <h1 id="textabove">See Our Activity</h1>
+        <div class="act-item">
+
+        </div>
+    </div> -->
+
+
     <div class="act-list">
         <h1 id="textabove">See Our Activity</h1>
         <div class="act-item">
@@ -74,7 +98,7 @@ if (!isset($_SESSION['id'])) {
                     <li>Capture the magic with photography and videography</li>
                 </ul>
                 <h5><b>Start from Rp500.000/pax</b></h5>
-                <a class="button" onclick="document.getElementById('loginfirst').style.display='block'">Reserve</a>
+                <a class="button" onclick=modalPopUp(1)>Reserve</a>
             </div>
             <img src="img/dive.png" alt="">
         </div>
@@ -90,7 +114,7 @@ if (!isset($_SESSION['id'])) {
                     <li>Capture the moment, freeze time with your lens.</li>
                 </ul>
                 <h5><b>Start from Rp170.000/pax</b></h5>
-                <a class="button" href="rsv.php">Reserve</a>
+                <a class="button" onclick=modalPopUp(2)>Reserve</a>
             </div>
             <img src="img/surf.png" alt="">
         </div>
@@ -105,7 +129,7 @@ if (!isset($_SESSION['id'])) {
                     <li>Capture unforgettable moments.</li>
                 </ul>
                 <h5><b>Start from Rp220.000/pax</b></h5>
-                <a class="button" href="rsv.php">Reserve</a>
+                <a class="button" onclick=modalPopUp(3)>Reserve</a>
             </div>
             <img src="img/snor.png" alt="">
         </div>
@@ -120,7 +144,7 @@ if (!isset($_SESSION['id'])) {
                     <li>Craft memories that echo the roar of engines, waves, and laughter.</li>
                 </ul>
                 <h5><b>Start from Rp150.000/pax</b></h5>
-                <a class="button" href="rsv.php">Reserve</a>
+                <a class="button" onclick=modalPopUp(4)>Reserve</a>
             </div>
             <img src="img/jet.png" alt="">
         </div>
@@ -193,7 +217,7 @@ if (!isset($_SESSION['id'])) {
                     <span onclick="document.getElementById('bookform').style.display='none'" class="w3-button w3-xlarge w3-display-topright cancel-top">&times;</span>
                     <h2><b>Booking Form</b></h2>
                 </div>
-                <form class="resort-booking" action="/action_page.php" method="post">
+                <form class="resort-booking" action="" method="post">
                     <div class="row"><br>
                         <div class="col-6">
                             <label for="fullname">Full Name</label><br>
@@ -203,8 +227,16 @@ if (!isset($_SESSION['id'])) {
                         </div>
 
                         <div class="col-6">
-                            <label for="email-book">Email</label><br>
-                            <input class="input-booking" type="text" placeholder="Insert Your Email" name="email-book" id="email-book" required><br>
+                        <label for="fullname">Activity Choice</label><br>
+                            <div class="input-booking">
+                                <select class="tiperoom" name="tipeact" id="tipeact" required>
+                                    <option>Choose activitys... </option>
+                                    <option value="Diving">Diving</option>
+                                    <option value="Surving">Surving</option>
+                                    <option value="Snorkeling">Snorkeling</option>
+                                    <option value="Jet Ski">Jet Ski</option>
+                                </select>
+                            </div>
                             <label for="act-date">Date</label><br>
                             <input class="input-booking" type="date" id="act-date" name="act-date" required>
                         </div>
@@ -212,24 +244,45 @@ if (!isset($_SESSION['id'])) {
                     <label for="">Payment Method :</label>
                     <div class="payment row">
                         <div class="col">
-                            <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard">&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
+                            <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard" value="Debit/Credit" >&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
                         </div>
                         <div class="col">
-                            <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
+                            <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank" value="Bank Transfer">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
                         </div>
                     </div>
 
-                </form>
+                    <div class="w3-container w3-padding-16">
+                        <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
+                        <button class="form-book-btn" type="submit" name="booking-button">Booking</button>
+                    </div>
 
-                <div class="w3-container w3-padding-16">
-                    <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
-                    <button class="form-book-btn" type="submit" name="booking-button">Booking</button>
-                </div>
+                </form>
 
             </div>
         </div>
     </div>
 
+
+
+    <script>
+         function modalPopUp(data){
+            var id = data;
+            document.getElementById('<?= $must_login ?>').style.display='block';
+            if(id == 1){
+                var dropdown = document.getElementById("tipeact");
+                dropdown.selectedIndex = 1;
+            } else if (id == 2){
+                var dropdown = document.getElementById("tipeact");
+                dropdown.selectedIndex = 2;
+            } else if(id == 3){
+                var dropdown = document.getElementById("tipeact");
+                dropdown.selectedIndex = 3;
+            } else if(id == 4){
+                var dropdown = document.getElementById("tipeact");
+                dropdown.selectedIndex = 4;
+            }
+        }
+    </script>
 </body>
 
 </html>
