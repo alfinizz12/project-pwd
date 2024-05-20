@@ -7,11 +7,13 @@
     margin: 0;
     padding: 0;
 }
-.home-page::-webkit-scrollbar, .activity-page::-webkit-scrollbar, .resort-page::-webkit-scrollbar {
+.home-page::-webkit-scrollbar, .activity-page::-webkit-scrollbar, .resort-page::-webkit-scrollbar, .profile-page::-webkit-scrollbar{
     display: none;
 }
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -19,11 +21,9 @@ body {
 .home-page {
     margin: 0px;
     padding: 0px;
-    background-image:url(img/bg3.png);
-    background-position: top;
-    background-repeat: no-repeat;
+    background:url(img/bg3.png) no-repeat;
+    /* background-position: top; */
     background-size: 100%;
-    /* background: white; */
 }
 body header{
     margin: 0;
@@ -32,29 +32,37 @@ body header{
     align-items: center;
 }
 nav{
+    width: 95%;
+    max-height: 40px;
+    padding: 0;
+    margin: 20px 30px ;
+    border-radius: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
     text-decoration: none;
     color: white;
-    background-color: transparent;
+    /* background: whitesmoke; */
+    backdrop-filter: blur(1px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 nav ul li a{
     display: block;
     text-decoration: none;
     padding: 5px 20px;
+    margin-top: 2px;
     margin-left: 4px;
     border-radius: 50px;
     color: white;
     transition: 0.2s;
 }
 nav ul li a:hover {
-    color: #3d8a9e;
+    color: #2b77a4;
     background: white;
 }
 nav ul li a.active {
-    color: #3d8a9e;
+    color: #2b77a4;
     background: white;
 }
 .navbar-brand{
@@ -65,7 +73,7 @@ nav ul li a.active {
     border-radius: 20px;
 }
 nav form a:hover{
-    color: #3d8a9e;
+    color: #2b77a4;
     background: white;
 }
 .login-btn {
@@ -74,18 +82,19 @@ nav form a:hover{
     width: 100px;
     margin-left: 70%;
     padding: 5px 20px;
+    margin-top: 2px;
+    margin-left: 230px;
     text-decoration: none;
     font-weight: bold;
     border: none;
     outline: none;
-    color: #3d8a9e;
-    background: white;
+    color: white;
+    background: #2b77a4;
     border-radius: 50px;
     transition: 0.2s;
 }
 .login-btn:hover{
-    background: #3d8a9e;
-    color: #ffffff;
+    background: #2b77a4;
 }
 .imgprof {
     margin-left: 7px;
@@ -96,32 +105,24 @@ nav form a:hover{
 .profile {
     display: block;
     color: white;
-    background: transparent;
+    background: #2b77a4;
     text-decoration: none;
-    border: 1px solid white;
-    margin-left: 210px;
+    margin-left: 230px;
+    margin-top: 2px;
     padding: 4.5px 11px;
     outline: none;
     display: flex;
     max-width: 100px;
     max-height: 35px;
     border-radius: 20px;
-    /* overflow: hidden; */
+    border: none;
 }
-.profile:hover {
-    color: #3d8a9e;
-    background: #ffffff;
-}
-.home-page .profile {
+.profile {
     font-weight: 600;
-    background: #ffffff;
-    color: #3d8a9e;
-    border: 1px solid #ffffff;
 }
-.home-page .profile:hover{
-    background:  #3d8a9e;
+.profile:hover{
+    background:  #1b4d69;
     color: #ffffff;
-    border: 1px solid #3d8a9e;
 }
 .upperpage{
     align-items: center;
@@ -132,7 +133,7 @@ nav form a:hover{
 .upperpage h1 {
     font-size: 50px;
     font-weight: bold;
-    color: #3d8a9e;
+    color: #2b77a4;
     text-align: center;
 }
 .box {
@@ -156,7 +157,7 @@ nav form a:hover{
     background: transparent;
 }
 .box .a .bi{
-    color: #3d8a9e;
+    color: #2b77a4;
     font-weight: bold;
 }
 .act {
@@ -170,7 +171,7 @@ nav form a:hover{
     background: url(img/sand.png) no-repeat;
 }
 .act h1{
-    color: #3d8a9e;
+    color: #2b77a4;
     font-weight: bold;
 }
 .act h5 {
@@ -191,7 +192,7 @@ nav form a:hover{
     transform: scale(.95);
 }
 .imgtxtcenter {
-    color: #3d8a9e;
+    color: #2b77a4;
     margin: 10px;
     text-align: center;
     font-weight: bold;
@@ -204,16 +205,16 @@ nav form a:hover{
     height: 50px;
     width: 20%;
     margin-top: 110px;
-    background-color: #3d8a9e;
+    background-color: #2b77a4;
     color: white;
     border: none;
     border-radius: 25px;
 }
 .act button:hover, .book:hover {
     font-weight: bold;
-    color: #3d8a9e;
+    color: #2b77a4;
     background: white;
-    border: #3d8a9e solid 2px;
+    border: #2b77a4 solid 2px;
     transition: .2s ease-in-out;
 }
 .crs-box {
@@ -221,7 +222,7 @@ nav form a:hover{
     padding: 0 auto;
     margin: 0;
     height: 500px;
-    background-color: #3d8a9e;
+    background-color: #2b77a4;
     width: 100%;
 }
 .carousel {
@@ -243,16 +244,16 @@ nav form a:hover{
     height: 50px;
     width: 50%;
     margin-top: 10px;
-    background-color: #3d8a9e;
+    background-color: #2b77a4;
     color: white;
     border: none;
     border-radius: 25px;
 }
 /* .book:hover {
     font-weight: bold;
-    color: #3d8a9e;
+    color: #2b77a4;
     background: white;
-    border: #3d8a9e solid 2px;
+    border: #2b77a4 solid 2px;
     transition: .2s ease-in-out;
 } */
 .caption {
@@ -280,11 +281,43 @@ nav form a:hover{
     padding-top: 30px;
     margin-bottom: 20px;
     text-align: center;
-    color: #3d8a9e;
+    color: #2b77a4;
 }
 .reason h4{
-    color: black;
+    color: #2b77a4;
 }
+
+.scrollrating {
+    display: flex;
+    width: 115 0px;
+    height: 250px;
+    overflow: auto;
+    margin-top: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+    white-space: nowrap;
+}
+.scrollrating::-webkit-scrollbar{
+    width: 10px;
+    height: 8px;
+    background-color: rgb(206, 206, 206);
+}
+.scrollrating::-webkit-scrollbar-thumb{
+    width: 10px;
+    background: #2b77a4;
+    border-radius: 10px;
+}
+.scrollrating .card {
+    padding: 0px;
+    margin-left: 20px;
+    height: 200px;
+    width: 26rem;
+}
+.fa-star {
+    color: rgb(243, 239, 17);
+}
+
+
 footer {
     left: 0;
     bottom: 0;
@@ -294,11 +327,12 @@ footer {
     background-color: #2b77a4;
     overflow: hidden;
     color: #ffffff;
+    text-align: center;
 }
 footer .row {
+    display: flex;
     padding: 50px;
-    margin: 20px;
-    text-align: center;
+    margin: 10px;
 }
 footer a{
     color: #f7ecbf;
@@ -315,7 +349,7 @@ footer .bi{
     padding: 5px 10px;
 }
 footer .bi:hover{
-    color: #3d8a9e;
+    color: #2b77a4;
     background: #f7ecbf;
 }
 
@@ -323,12 +357,9 @@ footer .bi:hover{
 
 /* Activity-Page */
 .activity-page  {
-    background:url(img/sandbig.png);
+    background:url(img/anothersand5.png) no-repeat;
     margin: 0;
     padding: 0;
-}
-.activity-page nav, .resort-page nav {
-    background-color: #209785;
 }
 .act-item img {
     position: block;
@@ -339,10 +370,12 @@ footer .bi:hover{
 }
 #textabove {
     text-align: center;
-    color: #0e5f53;
+    color: #ffffff;
     font-weight: bold;
     margin-bottom: 40px;
 }
+
+
 .act-list{
     margin: 40px 50px;
     padding: 0;
@@ -422,8 +455,8 @@ footer .bi:hover{
 
 /* Resort-Page */
 .resort-page {
-    background: url(img/sand.png) no-repeat;
-    background-position: 0%;
+    background: url(img/anothersand5.png) no-repeat;
+    margin: 0;
 }
 .room-item {
     display: flex;
@@ -439,12 +472,11 @@ footer .bi:hover{
 }
 .room-book {
     display: block;
-    justify-content: center;
     text-align: center;
     border-radius: 30px;
     box-shadow: 10px black;
     color: white;
-    background: #2bbaa5;
+    background: #2b77a4;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 85px;
@@ -452,14 +484,14 @@ footer .bi:hover{
     transition: transform .1s ease-in-out;
 }
 .room-book:hover {
-    background: #218d7d;
+    background: #24668b;
     transform: scale(.95);
 }
 .rst-capt{
     text-align: center;
-    color: #209785;
+    color: white;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .resort-page footer{
     margin-top: 0;
@@ -542,10 +574,11 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;
 }
 .form-book-btn {
+    margin-top: 15px;
     float: right;
     text-align: center;
     padding: 5px 20px;
-    margin-right: 20px;
+    margin-right: 0px;
     color: white;
     background: #2bbaa5;
     border: none;
@@ -558,10 +591,11 @@ input::-webkit-inner-spin-button {
     background: #229483;
 }
 .form-book-cancel {
+    margin-top: 15px;
     float: left;
     text-align: center;
     padding: 5px 20px;
-    margin-right: 20px;
+    margin-right: 0px;
     color: white;
     background: #d84444;
     border: none;
@@ -706,8 +740,18 @@ input::-webkit-inner-spin-button {
 
 
 /* Profile-page */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; 
+}
 .profile-page {
     background: #ffffff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 .prof-up {
     display: flex;
@@ -727,11 +771,11 @@ input::-webkit-inner-spin-button {
     border: none;
     outline: none;
     transform: scale(1.5);
-    background: #2e7d84;
+    background: #2b77a4;
     color: white;
 }
 .back-button:hover {
-    background: #206268;
+    background: #1c5270;
 }
 .my-profile {
     /* border: rgb(177, 177, 177) solid 2px; */
@@ -751,7 +795,6 @@ input::-webkit-inner-spin-button {
     position: absolute;
     margin-top: 15px;
     margin-left: 120px;
-    
 }
 .uname-profile h3, .uname-profile p {
     margin-left: 10px;
@@ -776,38 +819,50 @@ input::-webkit-inner-spin-button {
     width: 100px;
     height: 35px;
     position: absolute;
-    background: #25af9b;
+    background: #2b77a4;
     border: none;
     color: white;
     margin: 40px 800px;
     border-radius: 20px;
 }
 .editprof:hover {
-    background: #218564;
+    background: #1c5270;
 }
 .logout-btn button {
     position: absolute;
     width: 100px;
     height: 35px;
     color: white;
-    background: #b85151;
+    background: #b62b2b;
     text-align: center;
     border: none;
     margin: 40px 820px;
     border-radius: 20px;
 }
+.profile-search {
+    width: 300px;
+    float: right;
+    margin-top: 20px;
+    margin-left: 800px;
+    border: solid 5px rgb(245, 245, 245);
+    border-radius: 30px;
+}
 .logout-btn button:hover {
-    background: #b62b2b;
+    background: #b85151;
 }
 .booking-list {
     display: flex;
     width: 1400px;
     height: 420px;
-    margin-left: 20px;
-    /* background: white; */
-    /* box-shadow: 5px 5px black; */
-    /* border: solid 1px black; */
+    margin-left: 25px;
+    margin-right: 10px;
     border-radius: 20px 20px 0 0;
+}
+
+.mybooking-title {
+    text-align: center;
+    color: #2b77a4;
+    margin-bottom: 10px;
 }
 .image-edit {
     justify-content: center;
@@ -817,19 +872,23 @@ input::-webkit-inner-spin-button {
     margin: 20px;
     border: solid 5px rgb(245, 245, 245);
 }
+.act-bookinglist, .rst-bookinglist {
+    border: solid 5px rgb(245, 245, 245);
+    border-radius: 20px;
+    height: 480px;
+    padding: 10px;
+}
 .rst-bookinglist {
-    /* position: absolute; */
-    margin-left: 30px;
-    display: flex;
+    margin-left: 20px;
 }
 
 .ticket-book {
-    width: 630px;
+    width: 600px;
     height: 250px;
     display: block;
     border-radius: 20px;
     box-shadow: 20px black;
-    background:  rgb(247, 244, 244) ;
+    background:  rgb(230, 230, 230) ;
     padding: 20px 30px;
     margin: 5px 10px;
 }
@@ -848,6 +907,25 @@ input::-webkit-inner-spin-button {
 .ticket-inside td {
     padding-right: 50px;
 }
+.cancel-edit-booking {
+    float: right;
+    display: flex;
+}
+.cancel-edit-booking button {
+    margin-right: 10px;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+.cancel-booking {
+    background: rgb(182, 23, 23);
+}
+.edit-booking {
+    background: #2b77a4;
+}
+
 .bi-qr-code {
     padding: 0;
     margin: 0;
@@ -921,23 +999,28 @@ input::-webkit-inner-spin-button {
 
 
 .vertical-menu {
-    width: 650px;
+    width: 620px;
     height: 390px;
     margin: 0;
     overflow-y: auto;
-  }
-  
-  .vertical-menu .ticket-book {
+}
+/* .vertical-menu::-webkit-scrollbar{
     display: block;
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  
-  .vertical-menu a:hover {
-    background-color: #ccc;
-  }
-  
-  .vertical-menu a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
+    color: #1c5270;
+} */
+.vertical-menu .ticket-book {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.profile-page footer {
+    padding: 35px;
+    height: 45vh;
+}
+
+
+/* Activity-booking */
+.act-book-form {
+    justify-content: center;
+    border: solid 1px black;
+}
