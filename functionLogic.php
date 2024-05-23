@@ -205,8 +205,10 @@ function updateResort($data)
             </script>";
             return false;
         } else {
-            mysqli_query($connection, "UPDATE user SET  username = '$namaBaru', photo = '$foto' WHERE id = '$id'");
+            $connection->query("UPDATE user SET username = '$namaBaru', photo = '$foto' WHERE id = '$id'");
         }
+    } else {
+        $update = mysqli_query($connection, "UPDATE user SET  username = '$namaLama', photo = '$foto' WHERE id = '$id'");
     }
     return mysqli_affected_rows($connection);
 }
@@ -229,6 +231,14 @@ function act_booking($session, $data)
         $id_act = 3;
     } else if ($act_id == "Jet Ski") {
         $id_act = 4;
+    }
+
+    $date_now = new DateTime();
+    if($date <= $date_now){
+        echo "<script>
+                alert('Tanggal tidak valid')
+        </script>";
+        return false;
     }
 
     $booking = $connection->query(

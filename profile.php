@@ -12,7 +12,6 @@ if (isset($_POST['save'])) {
         echo "<script>
             alert('Berhasil update!');
         </script>";
-        mysqli_query($connection, "UPDATE user SET  username = '$namaLama', photo = '$foto' WHERE id = '$id'");
         header("Location: profile.php");
     }
 }
@@ -60,7 +59,7 @@ $count_data = mysqli_num_rows($resort_data);
     </div>
     <div class="prof-inside">
         <div class="my-profile">
-            <img src="img/<?= $user_data->photo ?> " alt="profpic">
+            <img src="img/<?=$user_data->photo?>" alt="profpic">
             <div class="uname-profile">
                 <p>Username</p>
                 <label for="">
@@ -207,7 +206,7 @@ $count_data = mysqli_num_rows($resort_data);
         <div class="edit-content">
             <div class="close-btn" onclick="popup()">&times;</div>
             <h2>Edit My Profile</h2>
-            <form action="profile.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user_data->id ?>">
                 <input type="hidden" name="fotoLama" value="<?= $user_data->photo ?>">
                 <input type="hidden" name="namaLama" value="<?= $user_data->username ?>">

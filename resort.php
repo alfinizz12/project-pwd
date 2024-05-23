@@ -10,14 +10,17 @@ if (!isset($_SESSION['id'])) {
 } else {
     $login_class = " ";
     $login_text = " ";
+    $id = $_SESSION['id'];
+    $photo = $connection->query("SELECT * FROM user WHERE id = $id");
+    $img_profile = $photo->fetch_object();
     $profile = "<form action='profile.php'>
-        <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
-    </form>";
+  <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
+</form>";
     $must_login = "bookform";
 }
 
-if(isset($_POST['booking-button'])){
-    if(booking($_SESSION["id"],$_POST) > 0){
+if (isset($_POST['booking-button'])) {
+    if (booking($_SESSION["id"], $_POST) > 0) {
         echo "<script>
             alert('Berhasil booking!, silahkan cek di profil anda!');
         </script>";
@@ -120,7 +123,7 @@ if(isset($_POST['booking-button'])){
                     <a href="#" class="room-book" onclick=modalPopUp(3)>Booking</a>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -208,7 +211,7 @@ if(isset($_POST['booking-button'])){
 
                     <label for="additional">Additional Request :</label>
                     <div class="form-check form-switch cekbok">
-                        <input class="form-check-input" type="checkbox" role="switch" id="extrabed" name="request[]"  value="Extra Bed">
+                        <input class="form-check-input" type="checkbox" role="switch" id="extrabed" name="request[]" value="Extra Bed">
                         <label class="form-check-label" for="extrabed">Extra Bed + Rp150.000</label>
                     </div>
                     <div class="form-check form-switch cekbok">
@@ -232,7 +235,7 @@ if(isset($_POST['booking-button'])){
                     </div>
                 </form>
 
-                
+
             </div>
         </div>
     </div>
@@ -279,22 +282,21 @@ if(isset($_POST['booking-button'])){
             }
         }
 
-        function modalPopUp(data){
+        function modalPopUp(data) {
             var id = data;
-            document.getElementById('<?= $must_login ?>').style.display='block';
+            document.getElementById('<?= $must_login ?>').style.display = 'block';
             // untuk mengambil id berdasarkan tipe room
-            if(id == 1){
+            if (id == 1) {
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 1;
-            } else if (id == 2){
+            } else if (id == 2) {
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 2;
-            } else if(id == 3){
+            } else if (id == 3) {
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 3;
             }
         }
-
     </script>
 
 </body>

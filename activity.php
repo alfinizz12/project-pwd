@@ -1,30 +1,33 @@
 <?php
-    session_start();
-    include 'functionLogic.php';
-    if (!isset($_SESSION['id'])) {
-        $login_text = "Login";
-        $login_class = "login-btn";
-        $must_login = "loginfirst";
-    } else {
-        $login_class = " ";
-        $login_text = " ";
-        $profile = "<form action='profile.php'>
-            <button class='profile'>Profile <img class='imgprof' src='img/profil.jpeg' alt=''></button>
-        </form>";
-        $must_login = "bookform";
-    }
+session_start();
+include 'functionLogic.php';
+if (!isset($_SESSION['id'])) {
+    $login_text = "Login";
+    $login_class = "login-btn";
+    $must_login = "loginfirst";
+} else {
+    $login_class = " ";
+    $login_text = " ";
+    $id = $_SESSION['id'];
+    $photo = $connection->query("SELECT * FROM user WHERE id = $id");
+    $img_profile = $photo->fetch_object();
+    $profile = "<form action='profile.php'>
+  <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
+</form>";
+    $must_login = "bookform";
+}
 
-    if(isset($_POST['booking-button'])){
-        if(act_booking($_SESSION["id"],$_POST) > 0){
-            echo "<script>
+if (isset($_POST['booking-button'])) {
+    if (act_booking($_SESSION["id"], $_POST) > 0) {
+        echo "<script>
                 alert('Berhasil booking!, silahkan cek di profil anda!');
             </script>";
-        } else {
-            echo "<script>
+    } else {
+        echo "<script>
                 alert('Gagal booking!');
             </script>";
-        }
     }
+}
 ?>
 
 
@@ -76,7 +79,7 @@
         </nav>
     </header>
 
-<!-- 
+    <!-- 
     <div class="act-list">
         <h1 id="textabove">See Our Activity</h1>
         <div class="act-item">
@@ -227,7 +230,7 @@
                         </div>
 
                         <div class="col-6">
-                        <label for="fullname">Activity Choice</label><br>
+                            <label for="fullname">Activity Choice</label><br>
                             <div class="input-booking">
                                 <select class="tiperoom" name="tipeact" id="tipeact" required>
                                     <option>Choose activities... </option>
@@ -244,7 +247,7 @@
                     <label for="">Payment Method :</label>
                     <div class="payment row">
                         <div class="col">
-                            <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard" value="Debit/Credit" >&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
+                            <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard" value="Debit/Credit">&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
                         </div>
                         <div class="col">
                             <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank" value="Bank Transfer">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
@@ -265,19 +268,19 @@
 
 
     <script>
-         function modalPopUp(data){
+        function modalPopUp(data) {
             var id = data;
-            document.getElementById('<?= $must_login ?>').style.display='block';
-            if(id == 1){
+            document.getElementById('<?= $must_login ?>').style.display = 'block';
+            if (id == 1) {
                 var dropdown = document.getElementById("tipeact");
                 dropdown.selectedIndex = 1;
-            } else if (id == 2){
+            } else if (id == 2) {
                 var dropdown = document.getElementById("tipeact");
                 dropdown.selectedIndex = 2;
-            } else if(id == 3){
+            } else if (id == 3) {
                 var dropdown = document.getElementById("tipeact");
                 dropdown.selectedIndex = 3;
-            } else if(id == 4){
+            } else if (id == 4) {
                 var dropdown = document.getElementById("tipeact");
                 dropdown.selectedIndex = 4;
             }

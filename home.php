@@ -13,7 +13,7 @@ if (!isset($_SESSION['id'])) {
   $photo = $connection->query("SELECT * FROM user WHERE id = $id");
   $img_profile = $photo->fetch_object();
   $profile = "<form action='profile.php'>
-  <button class='profile'>Profile <img class='imgprof' src='img/<?=$img_profile->photo?>' alt=''></button>
+  <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
 </form>";
 }
 
