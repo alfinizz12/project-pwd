@@ -113,9 +113,8 @@ $count_data = mysqli_num_rows($resort_data);
                             <div>
                                 <table class="ticket-inside">
                                     <tr>
-                                        <td>Date</td>
+                                        <td >Date</td>
                                         <td>Total</td>
-                                        <td rowspan="2"><i class="bi bi-qr-code"></i></td>
                                     </tr>
                                     <tr>
                                         <?php
@@ -132,7 +131,7 @@ $count_data = mysqli_num_rows($resort_data);
                                     <form action="">
                                         <td><button class="cancel-booking">Cancel</button></td>
                                     </form>
-                                    <form action="">
+                                    <form action="edit-act.php">
                                         <td><button class="edit-booking">Edit</button></td>
                                     </form>
                                 </div>
@@ -192,6 +191,14 @@ $count_data = mysqli_num_rows($resort_data);
                                         <td><?= $resort_data_fetch['total']; ?></td>
                                     </tr>
                                 </table>
+                                <div class="cancel-edit-booking">
+                                    <form action="">
+                                        <td><button class="cancel-booking">Cancel</button></td>
+                                    </form>
+                                    <form action="edit-rst.php">
+                                        <td><button class="edit-booking">Edit</button></td>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -259,4 +266,4 @@ $count_data = mysqli_num_rows($resort_data);
 
 </body>
 
-</html>
+</html> 
