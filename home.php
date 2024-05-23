@@ -1,7 +1,6 @@
 <?php
 session_start();
-require 'functionLogic.php';
-
+include "functionLogic.php";
 
 if (!isset($_SESSION['id'])) {
   $login_text = "Login";
@@ -11,12 +10,11 @@ if (!isset($_SESSION['id'])) {
   $login_text = " ";
   $id = $_SESSION['id'];
   $photo = $connection->query("SELECT * FROM user WHERE id = $id");
-  $img_profile = $photo->fetch_object();
+  $image_profile = $photo->fetch_object();
   $profile = "<form action='profile.php'>
-  <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
+  <button class='profile'>Profile <img class='imgprof' src='img/$image_profile->photo' alt=''></button>
 </form>";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +53,7 @@ if (!isset($_SESSION['id'])) {
               <a href="resort.php">Resort</a>
             </li>
             <li>
-              <a href="contact">Contact Us</a>
+              <a href="contactus.php">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -68,9 +66,9 @@ if (!isset($_SESSION['id'])) {
   </header>
 
   <div class="upperpage">
-    <h1>Bluebuk.</h1>
-    <form class="box" id="search">
-      <input id="searchForm" type="search" placeholder="Search" autocomplete="off">
+    <h1><b>Bluebuk.</b></h1>
+    <form class="box">
+      <input type="search" placeholder="Search">
       <a href="">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -146,7 +144,7 @@ if (!isset($_SESSION['id'])) {
     </div>
   </div>
 
-  <h2 class="about ms-5 mt-5">Welcome to Bluebuk Beach & Resort</h2>
+  <h2 class="about ms-5 mt-5"><b>Welcome to Bluebuk Beach & Resort</b></h2>
   <div class="underpage row">
     <div class="reason col">
       <h4>Escape to Your Dream Beach Getaway</h4>
@@ -178,49 +176,93 @@ if (!isset($_SESSION['id'])) {
     <p>Ready to experience the beauty and luxury of Bluebuk Beach & Resort? Explore our website to learn more about our accommodations, amenities, and <br>special offers. Book your stay today and start counting down the days until your dream beach getaway.</p>
   </div><br>
 
-  <h1 style="text-align: center;">Our Customer Reviews</h1>
+  <h2 style="text-align: center;"><b>Our Customer Reviews</b></h2>
   <div class="scrollrating">
-    <div id="review" class="col">
+    <div class="col">
       <div class="card">
         <div class="card-body">
           <h3>Winter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
-          <p>This is a Very nice place to stay!</p><br>
-          <h6>2 weeks ago</h6>
+          <p>This is a very nice place to stay!</p><br>
+          <h6>2 weeks ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like1')"><i class="fa-regular fa-thumbs-up" id="like1"></i></button></h6>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
         <div class="card-body">
-          This is some text within a card body.
+          <h3>Karina&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p>Amazing dive spots, saw so much marine life!</p><br>
+          <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like2')"><i class="fa-regular fa-thumbs-up" id="like2"></i></button></h6>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
         <div class="card-body">
-          This is some text within a card body.
+          <h3>Zilong&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
+          <p style="margin-bottom: 25px;">Incredible resort, beachfront access makes<br>everything easy!</p>
+          <h6>1 week ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like3')"><i class="fa-regular fa-thumbs-up" id="like3"></i></button></h6>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
         <div class="card-body">
-          This is some text within a card body.
+          <h3>Jeremy&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p>Jet ski rentals available, fun for the whole family!</p><br>
+          <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like4')"><i class="fa-regular fa-thumbs-up" id="like4"></i></button></h6>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
         <div class="card-body">
-          This is some text within a card body.
+          <h3>Alexa&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p style="margin-bottom: 25px;">Snorkeling gear provided, hassle-free and<br>enjoyable!</p>
+          <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like5')"><i class="fa-regular fa-thumbs-up" id="like5"></i></button></h6>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
         <div class="card-body">
-          This is some text within a card body.
+          <h3>Aamon&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
+          <p style="margin-bottom: 25px;">Jet skiing with friends, unforgettable <br> memories made!</p>
+          <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like6')"><i class="fa-regular fa-thumbs-up" id="like6"></i></button></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3>Berry&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p style="margin-bottom: 25px;">Beachside bonfires after a day of fun, <br>magical evenings!</p>
+          <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like7')"><i class="fa-regular fa-thumbs-up" id="like7"></i></button></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3>Keyla&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
+          <p style="margin-bottom: 25px;">Beachfront lounging after activities, pure <br>relaxation!</p>
+          <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
+            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
+            <button onclick="likeactive('like8')"><i class="fa-regular fa-thumbs-up" id="like8"></i></button></h6>
         </div>
       </div>
     </div>
@@ -267,35 +309,45 @@ if (!isset($_SESSION['id'])) {
     </div>
 
   </footer>
+</body>
 
   <script>
-    document.getElementById('searchForm').addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') { // Periksa apakah tombol yang ditekan adalah Enter
-        event.preventDefault(); // Mencegah perilaku default dari tombol Enter
-
-        var inputText = document.getElementById('searchForm').value.toLowerCase(); // Mengambil nilai dari input dan mengubahnya menjadi huruf kecil
-        var keywords = inputText.split(' '); // Memecah kalimat menjadi kata-kata
-
-        // Definisikan kata kunci dan halaman yang sesuai
-        var pages = {
-          'home': 'home.php',
-          'resort': 'resort.php',
-          'activity': 'activity.php',
-          }
-        };
-
-        // Cari kata kunci dalam input
-        for (var i = 0; i < keywords.length; i++) {
-          var keyword = keywords[i];
-          if (pages[keyword]) {
-            window.location.href = pages[keyword];
-            return; // Hentikan eksekusi lebih lanjut setelah redirect
-          }
-        }
-        // Jika tidak ada kata kunci yang cocok, tampilkan pesan kesalahan
-        alert('Halaman tidak ditemukan!');
+    document.addEventListener("DOMContentLoaded", function() {
+    let likeButtons = document.querySelectorAll(".fa-thumbs-up");
+    likeButtons.forEach(function(button) {
+      let isLiked = localStorage.getItem(button.id);
+      if (isLiked === "true") {
+        button.classList.remove("fa-regular");
+        button.classList.add("fa-solid");
+      } else {
+        button.classList.remove("fa-solid");
+        button.classList.add("fa-regular");
+      }
     });
+  });
+
+  function likeactive(buttonId) {
+    let likeButton = document.getElementById(buttonId);
+    if (likeButton.classList.contains("fa-regular")) {
+      likeButton.classList.remove("fa-regular");
+      likeButton.classList.add("fa-solid");
+      localStorage.setItem(buttonId, "true");
+    } else {
+      likeButton.classList.remove("fa-solid");
+      likeButton.classList.add("fa-regular");
+      localStorage.setItem(buttonId, "false");
+    }
+  }
+    // function dislikeactive(){
+    //   let likeicon = document.getElementById("dislike");
+    //     if (likeicon.classList.contains("fa-regular")) {
+    //         likeicon.classList.remove("fa-regular");
+    //         likeicon.classList.add("fa-solid");
+    //     } else {
+    //         likeicon.classList.remove("fa-solid");
+    //         likeicon.classList.add("fa-regular");
+    //     }
+    // }
   </script>
-</body>
 
 </html>
