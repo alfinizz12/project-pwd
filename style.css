@@ -1064,10 +1064,6 @@ html, body {
     backdrop-filter: blur(5px);
 }
  
-
-
-
-
-
-
-
+.dis-button{
+    background: gray;
+}

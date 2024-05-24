@@ -235,7 +235,7 @@ if (isset($_POST['booking-button'])) {
                                 <select class="tiperoom" name="tipeact" id="tipeact" required>
                                     <option>Choose activities... </option>
                                     <option value="Diving">Diving</option>
-                                    <option value="Surving">Surving</option>
+                                    <option value="Surfing">Surfing</option>
                                     <option value="Snorkeling">Snorkeling</option>
                                     <option value="Jet Ski">Jet Ski</option>
                                 </select>

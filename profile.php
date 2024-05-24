@@ -7,8 +7,20 @@ if (!isset($_SESSION['id'])) {
     header("Location: login.php");
 }
 
+if(isset($_POST['cancel'])){
+    if(deleteAct($_POST['id_del']) > 0){
+        echo "<script> alert('Cancel berhasil'); window.location.href='profile.php'; </script>";
+    }
+}
+
+if(isset($_POST['cancel-res'])){
+    if(deleteRes($_POST['id_cancel']) > 0){
+        echo "<script> alert('Cancel berhasil'); window.location.href='profile.php'; </script>";
+    }
+}
+
 if (isset($_POST['save'])) {
-    if (updateResort($_POST) > 0) {
+    if (updateProf($_POST) > 0) {
         echo "<script>
             alert('Berhasil update!');
         </script>";
@@ -22,13 +34,12 @@ $user = $connection->query("SELECT * FROM user WHERE id = '$id'");
 $user_data = $user->fetch_object();
 
 // // perintah memilih row pada tabel resort
-$resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ");
-$activity_data = mysqli_query($connection, "SELECT * FROM activity_booking WHERE user_id_act = '$user_data->id' ");
+$resort_data = $connection->query("SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ORDER BY date DESC");
+$activity_data = $connection->query("SELECT * FROM activity_booking WHERE user_id_act = '$user_data->id' ORDER BY date DESC");
 
 // menhitung jumlah row pada table
 $count_data = mysqli_num_rows($resort_data);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,23 +93,23 @@ $count_data = mysqli_num_rows($resort_data);
             <div class="act-bookinglist">
                 <h2 class="mybooking-title">My Activity Booking</h2>
                 <div class="vertical-menu">
-                    <?php if (isset($def)) echo $def; ?>
-                    <?php while ($activity_data_fetch = mysqli_fetch_array($activity_data)) : ?>
+                    <?php if (isset($def)) echo $def?>
+                    <?php while ($activity_data_fetch = $activity_data->fetch_object()) : ?>
 
                         <?php
-                        if ($activity_data_fetch['activity_ID'] == 1) {
-                            $act_type = "Diving";
-                            $total = 500000;
-                        } else if ($activity_data_fetch['activity_ID'] == 2) {
-                            $act_type = "Surfing";
-                            $total = 500000;
-                        } else if ($activity_data_fetch['activity_ID'] == 3) {
-                            $act_type = "Snorkeling";
-                            $total = 500000;
-                        } else if ($activity_data_fetch['activity_ID'] == 4) {
-                            $act_type = "Jet Ski";
-                            $total = 500000;
-                        }
+                            $activity = $connection->query("SELECT * FROM activity WHERE id = $activity_data_fetch->activity_ID");
+                            $act_detail = $activity->fetch_object();
+                            $act_type = $act_detail->act_name;
+                            $total = $act_detail->harga;
+
+                            $date_now = new DateTime();
+                            $date_check = new DateTime($activity_data_fetch->date);
+                            $button_status = "";
+                            $button = "";
+                            if($date_now >= $date_check) {
+                                $button_status = "disabled";
+                                $button = "dis-button";
+                            }
                         ?>
 
                         <div class="ticket-book">
@@ -118,21 +129,24 @@ $count_data = mysqli_num_rows($resort_data);
                                     </tr>
                                     <tr>
                                         <?php
-                                        $activity_data_fetch['date'] = date("d M Y", strtotime($activity_data_fetch['date']));
+                                        $activity_data_fetch->date = date("d M Y", strtotime($activity_data_fetch->date));
 
                                         $total = 'Rp. ' . number_format($total, 0, ',', ',');
                                         ?>
-                                        <td><?= $activity_data_fetch['date']; ?></td>
+                                        <td><?= $activity_data_fetch->date; ?></td>
                                         <td><?= $total ?></td>
                                     </tr>
 
                                 </table>
                                 <div class="cancel-edit-booking">
-                                    <form action="">
-                                        <td><button class="cancel-booking">Cancel</button></td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_del" value="<?=$activity_data_fetch->id?>">
+                                        <td><button name="cancel" class="cancel-booking <?php if(isset($button)) echo $button;?>" <?php if(isset($button_status))echo $button_status?> onclick="return confirm('Yakin ingin cancel pemesanan?')">Cancel</button></td>
                                     </form>
-                                    <form action="edit-act.php">
-                                        <td><button class="edit-booking">Edit</button></td>
+                                    <form action="edit-act.php" method="post">
+                                        <input type="hidden" name="id_edit" value="<?=$activity_data_fetch->id?>">
+                                        <input type="hidden" name="activity" value="<?=$activity_data_fetch->activity_ID?>">
+                                        <td><button name="edit-act-bt" class="edit-booking <?php if(isset($button)) echo $button;?>" <?php if(isset($button_status)) echo $button_status ?>>Edit</button></td>
                                     </form>
                                 </div>
                             </div>
@@ -141,23 +155,24 @@ $count_data = mysqli_num_rows($resort_data);
                 </div>
             </div>
 
-            <?php
-            // Re-fetching the data for the second loop
-            $resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' ");
-            ?>
             <div class="rst-bookinglist">
                 <h2 class="mybooking-title">My Resort Booking</h2>
                 <div class="vertical-menu">
                     <?php if (isset($def)) echo $def; ?>
-                    <?php while ($resort_data_fetch = mysqli_fetch_assoc($resort_data)) : ?>
+                    <?php while ($resort_data_fetch = $resort_data->fetch_object()) : ?>
+
                         <?php
-                        if ($resort_data_fetch['resort_id'] == 1) {
-                            $room_type = "Standard";
-                        } else if ($resort_data_fetch['resort_id'] == 2) {
-                            $room_type = "Deluxe";
-                        } else if ($resort_data_fetch['resort_id'] == 3) {
-                            $room_type = "Suite";
-                        }
+                        $resort = $connection->query("SELECT * FROM resort WHERE id = $resort_data_fetch->resort_id");
+                        $res_detail = $resort->fetch_object();
+                        $room_type = $res_detail->packet_name;
+                        $date_now = new DateTime();
+                        $date_check_res = new DateTime($resort_data_fetch->date);
+                        $button_status_r = "";
+                        $button_r = "";
+                        if($date_now >= $date_check_res) {
+                            $button_status_r = "disabled";
+                            $button_r = "dis-button";
+                        } 
                         ?>
 
                         <div class="ticket-book">
@@ -178,25 +193,27 @@ $count_data = mysqli_num_rows($resort_data);
                                     </tr>
                                     <tr>
                                         <?php
-                                        $resort_data_fetch['date'] = date("d M Y", strtotime($resort_data_fetch['date']));
+                                        $resort_data_fetch->date = date("d M Y", strtotime($resort_data_fetch->date));
 
-                                        $resort_data_fetch['date_out'] = date("d M Y", strtotime($resort_data_fetch['date_out']));
+                                        $resort_data_fetch->date_out = date("d M Y", strtotime($resort_data_fetch->date_out));
 
-                                        $resort_data_fetch['total'] = 'Rp. ' . number_format($resort_data_fetch['total'], 0, ',', ',');
+                                        $resort_data_fetch->total = 'Rp. ' . number_format($resort_data_fetch->total, 0, ',', ',');
 
                                         ?>
-                                        <td><?= $resort_data_fetch['date']; ?></td>
-                                        <td><?= $resort_data_fetch['date_out']; ?></td>
+                                        <td><?= $resort_data_fetch->date; ?></td>
+                                        <td><?= $resort_data_fetch->date_out; ?></td>
                                         <?php ?>
-                                        <td><?= $resort_data_fetch['total']; ?></td>
+                                        <td><?= $resort_data_fetch->total; ?></td>
                                     </tr>
                                 </table>
                                 <div class="cancel-edit-booking">
-                                    <form action="">
-                                        <td><button class="cancel-booking">Cancel</button></td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_cancel" value="<?=$resort_data_fetch->id?>">
+                                        <td><button class="cancel-booking <?php if(isset($button_r)) echo $button_r?>" name="cancel-res" <?php if(isset($button_status_r)) echo $button_status_r?> onclick="return confirm('Yakin ingin cancel pemesanan?')">Cancel</button></td>
                                     </form>
-                                    <form action="edit-rst.php">
-                                        <td><button class="edit-booking">Edit</button></td>
+                                    <form action="edit-rst.php" method="post">
+                                        <input type="hidden" name="id_edit" value="<?=$resort_data_fetch->id?>">
+                                        <td><button class="edit-booking <?php if(isset($button_r)) echo $button_r;?>" name="edit-res" <?php if(isset($button_status_r)) echo $button_status_r ?>>Edit</button></td>
                                     </form>
                                 </div>
                             </div>
@@ -266,4 +283,4 @@ $count_data = mysqli_num_rows($resort_data);
 
 </body>
 
-</html> 
+</html>

@@ -1,3 +1,48 @@
+<?php
+    session_start();
+    require 'functionLogic.php';
+
+    if (!isset($_SESSION['id'])) {
+        header("Location: login.php");
+    }
+
+    if(isset($_POST['booking-button'])){
+        if(editAct($_SESSION['id'] ,$_POST) > 0){
+            echo "<script> alert('Booking Updated Successfully!'); window.location.href='profile.php'; </script>";
+        } else {
+            echo "<script> alert('Update Failed'); window.location.href='profile.php'; </script>";
+        }
+    }
+
+    if(isset($_POST['edit-act-bt'])){
+        $id = $_POST['id_edit'];
+        $act_type = $_POST['activity'];
+    } else {
+        echo "<script> alert('Update Failed'); window.location.href='profile.php'; </script>";
+    }
+    
+    function actSelect($act){
+        global $act_type;
+        if($act == $act_type) $act_name = "diving";
+        else if ($act == $act_type) $act_name = "surfing";
+        else if ($act == $act_type) $act_name = "snorkeling";
+        else if ($act == $act_type) $act_name = "jetski";
+        
+        if(isset($act_name)) echo "selected";
+    }
+
+    $query = $connection->query("SELECT * FROM activity_booking WHERE id = $id");
+    $row = $query->fetch_object();
+
+    function paymentSelect($payment){
+        global $row;
+        if($payment == $row->payment) $payment_method = "Bank Transfer";
+        else if($payment == $row->payment) $payment_method = "Debit/Credit";
+        
+        if(isset($payment_method)) echo "checked";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,43 +83,42 @@
             <form class="resort-booking" action="" method="post">
                 <div class="row"><br>
                     <div class="col-6">
+                        <input type="hidden" name="id" value="<?=$id?>">
                         <label for="fullname">Full Name</label><br>
-                        <input class="input-booking" type="text" placeholder="Insert Your Full Name" name="fullname" id="fullname" required><br>
+                        <input class="input-booking" type="text" placeholder="Insert Your Full Name" name="fullname" id="fullname" value="<?=$row->name?>" required><br>
                         <label for="phone">Phone</label><br>
-                        <input class="input-booking" type="text" placeholder="Your Phone Number" name="phone" id="phone" required><br>
+                        <input class="input-booking" type="text" placeholder="Your Phone Number" name="phone" id="phone" value="<?=$row->phone_num?>"  required><br>
                     </div>
 
                     <div class="col-6">
                         <label for="fullname">Activity Choice</label><br>
                         <div class="input-booking">
                             <select class="tiperoom" name="tipeact" id="tipeact" required>
-                                <option>Choose activitys... </option>
-                                <option value="Diving">Diving</option>
-                                <option value="Surving">Surving</option>
-                                <option value="Snorkeling">Snorkeling</option>
-                                <option value="Jet Ski">Jet Ski</option>
+                                <option>Choose activities... </option>
+                                <option <?=actSelect(1)?> value="Diving">Diving</option>
+                                <option <?=actSelect(2)?> value="Surfing">Surfing</option>
+                                <option <?=actSelect(3)?> value="Snorkeling">Snorkeling</option>
+                                <option <?=actSelect(4)?> value="Jet Ski">Jet Ski</option>
                             </select>
                         </div>
                         <label for="act-date">Date</label><br>
-                        <input class="input-booking" type="date" id="act-date" name="act-date" required>
+                        <input class="input-booking" type="date" id="act-date" name="act-date" value="<?=$row->date?>" required>
                     </div>
                 </div>
                 <label for="">Payment Method :</label>
                 <div class="payment row">
                     <div class="col">
-                        <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard" value="Debit/Credit">&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
+                        <label class="paycard" for="paycard"><input type="radio" name="paycard" id="paycard" value="Debit/Credit" <?=paymentSelect("Debit/Credit")?>>&emsp;<i class="fa-regular fa-credit-card"></i> Debit/Credit card</label>
                     </div>
                     <div class="col">
-                        <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank" value="Bank Transfer">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
+                        <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank" value="Bank Transfer" <?=paymentSelect("Bank Transfer")?>>&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
                     </div>
                 </div><br>
 
                 <div class="">
                     <button class="form-book-btn" style="margin-bottom: 30px;" type="submit" name="booking-button">Save</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 </body>

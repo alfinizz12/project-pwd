@@ -61,18 +61,16 @@ function booking($session, $data)
 {
     global $connection;
 
-    // ambil id dari session;
-
     $name = stripslashes($_POST['name']);
     $phone_num = $_POST['phone'];
     $date = $_POST["checkin"];
     $date_out = $_POST['checkout'];
     $guest = $_POST['number'];
+    $request = $_POST['request'];
     if (empty($request)) {
         $request = "None";
-    } else {
-        $request = $_POST['request'];
     }
+    
     $payment = $_POST['payment'];
     $resort_id = $_POST['tiperoom'];
 
@@ -182,7 +180,7 @@ function upload()
 }
 
 
-function updateResort($data)
+function updateProf($data)
 {
     global $connection;
 
@@ -233,8 +231,9 @@ function act_booking($session, $data)
         $id_act = 4;
     }
 
+    $date_book = new DateTime($date);
     $date_now = new DateTime();
-    if($date <= $date_now){
+    if($date_book <= $date_now){
         echo "<script>
                 alert('Tanggal tidak valid')
         </script>";
@@ -254,5 +253,125 @@ function act_booking($session, $data)
         )"
     );
 
+    return mysqli_affected_rows($connection);
+}
+
+function editAct($session ,$data){
+    global $connection;
+    $id = $data['id'];
+    $name = stripslashes($_POST['fullname']);
+    $phone_num = $_POST['phone'];
+    $date = $_POST["act-date"];
+    $payment = $_POST['paycard'];
+    $act_id = $_POST['tipeact'];
+
+    if ($act_id == "Diving") {
+        $id_act = 1;
+    } else if ($act_id == "Surfing") {
+        $id_act = 2;
+    } else if ($act_id == "Snorkeling") {
+        $id_act = 3;
+    } else if ($act_id == "Jet Ski") {
+        $id_act = 4;
+    }
+
+    $date_book = new DateTime($date);
+    $date_now = new DateTime();
+    if($date_book <= $date_now){
+        echo "<script>
+                alert('Tanggal tidak valid')
+        </script>";
+        return false;
+    }
+
+    $booking_edit = $connection->query("UPDATE activity_booking SET name = '$name', phone_num = $phone_num, date = '$date', payment = '$payment', activity_ID = $id_act, user_id_act = $session WHERE id = $id");
+
+    return mysqli_affected_rows($connection);
+}
+
+function deleteAct($id){
+    global $connection;
+
+    $delete = $connection->query("DELETE FROM activity_booking WHERE id = $id");
+    return mysqli_affected_rows($connection);
+}
+
+function editRes($session, $data){
+    global $connection;
+
+    $id = $data['id'];
+    $name = stripslashes($data['name']);
+    $phone_num = $data['phone'];
+    $date = $data["checkin"];
+    $date_out = $data['checkout'];
+    $guest = $data['number'];
+    $request = $data['request'];
+    if (empty($request)) {
+        $request = "None";
+    }
+    
+    $payment = $data['payment'];
+    $resort_id = $data['tiperoom'];
+
+    // cek apakah date <= sekarang dan date < date_out
+    $date_cek = new DateTime($date);
+    $date_out_cek = new DateTime($date_out);
+    $date_now = new DateTime();
+
+    if ($date_cek < $date_now) {
+        return false;
+    } else if ($date_cek > $date_out_cek) {
+        return false;
+    }
+
+
+    // mengubah nama kamar menjadi id room
+    if ($resort_id == "Standard") {
+        $id_room = 1;
+    } else if ($resort_id == "Deluxe") {
+        $id_room = 2;
+    } else if ($resort_id == "Suite") {
+        $id_room = 3;
+    }
+
+    // mengambil harga
+    $resort = mysqli_query($connection, "SELECT price FROM resort where id = '$id_room'");
+    $price = mysqli_fetch_array($resort);
+
+    // hitung total yang harus dibayar
+    $total = $price[0];
+    $req_price = ["Extra Bed" => 150000, "Extra Pillow & Bolster" => 50000];
+    if ($request !== "None") {
+        foreach ($request as $req) {
+            if (array_key_exists($req, $req_price)) {
+                // Add the extra cost to the total cost
+                $total += $req_price[$req];
+            }
+        }
+    }
+
+    // input data ke database
+    $booking = mysqli_query(
+        $connection,
+        "UPDATE resort_booking SET
+                name = '$name',
+                phone_num = '$phone_num',
+                date = '$date',
+                date_out = '$date_out',
+                guest = '$guest',
+                payment = '$payment',
+                total = '$total',
+                resort_id = '$id_room',
+                user_id_resort = '$session'
+                WHERE id = $id;
+            "
+    );
+    return mysqli_affected_rows($connection);
+}
+
+function deleteRes($id){
+    global $connection;
+
+    $delete = $connection->query("DELETE FROM resort_booking WHERE id = $id");
     return mysqli_affected_rows($connection);
 }
