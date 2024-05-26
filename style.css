@@ -385,11 +385,15 @@ footer .bi:hover{
 
 /* Activity-Page */
 .activity-page  {
-    background:url(img/anothersand5.png) no-repeat;
+    background: white;
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
-.act-item img {
+.activity-page  footer {
+    margin-top: 40%;
+}
+/* .act-item img {
     position: block;
     border-radius: 30px;
     margin: 0;
@@ -401,9 +405,9 @@ footer .bi:hover{
     color: #ffffff;
     font-weight: bold;
     margin-bottom: 40px;
-}
+} */
 
-.act-list{
+/* .act-list{
     margin: 40px 50px;
     padding: 0;
 }
@@ -453,7 +457,169 @@ footer .bi:hover{
     border-radius: 50px;
     background: #209785;
     color: white;
+} */
+header {
+    position: relative; /* Enable z-index to work */
+    z-index: 10; /* Higher than the z-index of .activity-item */
 }
+.act-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1400px;
+    height: 650px;
+    padding: 0;
+    background-color: whitesmoke;
+  }
+
+  #slide {
+    width: max-content;
+    margin-top: 50px;
+  }
+
+  .activity-item {
+    width: 200px;
+    height: 200px;
+    background-position: 50% 50%;
+    display: inline-block;
+    transition: 0.5s;
+    /* background-size:; */
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translate(0, -5%);
+    border-radius: 20px;
+    box-shadow: 0 30px 40px #252525;
+  }
+  /* .act-title {
+    transform: translate(0, -500%);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    top: 60%;
+    left: 25%;
+    z-index: 4;
+    position: absolute;
+    display: none;
+  } */
+  .activity-item img {
+    position: absolute;
+    /* z-index: 0; */
+    /* transform: translate(-6%,-20%); */
+    margin-left: -30%;
+    margin-top: -50%;
+    display: block;
+  }
+  .activity-item:nth-child(1),
+  .activity-item:nth-child(2) {
+    left: 0;
+    top: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+  }
+
+  .activity-item:nth-child(3) {
+    left: 60%;
+  }
+
+  .activity-item:nth-child(4) {
+    left: calc(60% + 220px);
+  }
+
+  .activity-item:nth-child(n+5) {
+    left: calc(60% + 440px);
+    opacity: 0;
+  }
+
+  .activity-item .act-content {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    padding: 0;
+    color: white;
+    transform: translate(0, -50%);
+    display: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .activity-item:nth-child(2) .act-content {
+    display: block;
+    z-index: 111111;
+  }
+
+  .activity-item .act-desc {
+    margin: 20px;
+    font-weight: bold;
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+  }
+
+  .activity-item .act-name {
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 1 forwards;
+  }
+
+  .activity-item a {
+    padding: 10px 20px;
+    text-decoration: none;
+    background: white;
+    color: #2b77a4;
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+  }
+  .activity-item a:hover {
+    background: rgb(196, 196, 196);
+  }
+
+
+  @keyframes showcontent {
+    from {
+      opacity: 0;
+      transform: translate(0, 100px);
+      filter: blur(33px);
+
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+      filter: blur(0);
+    }
+  }
+
+  .button-act-item {
+    position: absolute;
+    bottom: 30px;
+    z-index: 222222;
+    text-align: center;
+    width: 100%;
+  }
+
+  .button-act-item button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #555;
+    transition: .5s;
+  }
+
+  .button-act-item button:hover {
+    background-color: #1b4d69;
+  }
+
+
 .modal-box  {
     justify-content: center;
     width: 900px !important;
@@ -527,8 +693,13 @@ footer .bi:hover{
     padding: 10px 30px;
     margin: 20px;
 }
-.bookform-box, .cancel-top{
+.bookform-box{
     border-radius: 20px;
+}
+.cancel-top {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
 }
 .input-booking {
     /* justify-content: center; */
@@ -545,9 +716,7 @@ footer .bi:hover{
 .resort-booking label {
     margin-left: 10px;
 }
-.resort-booking .fullname-input {
-    width: 700px;
-}
+
 .resort-booking ::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -594,7 +763,7 @@ input::-webkit-inner-spin-button {
     position: absolute;
     width: 240px;
     height: 50px;
-    border: 1px solid #2bbaa5;
+    border: 1px solid #2b77a4;
     background: transparent;
     justify-content: center;
     padding: 12px 20px;
@@ -607,7 +776,7 @@ input::-webkit-inner-spin-button {
     padding: 5px 20px;
     margin-right: 0px;
     color: white;
-    background: #2bbaa5;
+    background: #2b77a4;
     border: none;
     outline: none;
     width: 200px;
@@ -615,7 +784,7 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;
 }
 .form-book-btn:hover {
-    background: #229483;
+    background: #1f5675;
 }
 .form-book-cancel {
     margin-top: 15px;
@@ -924,6 +1093,7 @@ html, body {
 .ticket-book h2 {
     margin: 0;
     padding: 15px 0;
+    color: #2b77a4;
 }
 .ticket-up {
     width: 500px;
@@ -945,14 +1115,36 @@ html, body {
     width: 70px;
     height: 30px;
     border-radius: 5px;
-    color: white;
-    border: none;
 }
-.cancel-booking {
+.cancel-booking{
+    background: none;
+    border: 1px solid rgb(182, 23, 23);
+    color: red;
+}
+.cancel-booking:hover {
     background: rgb(182, 23, 23);
+    border: 1px solid rgb(182, 23, 23);
+    color: white;
 }
 .edit-booking {
+    background: none;
+    border: 1px solid #2b77a4;
+    color: #2b77a4;
+}
+.edit-booking:hover {
     background: #2b77a4;
+    border: 1px solid #2b77a4;
+    color: white;
+}
+.done-book {
+    background: none;
+    border: 1px solid green;
+    color: green;
+}
+.done-book:hover {
+    background: green;
+    border: 1px solid green;
+    color: white;
 }
 
 .bi-qr-code {
@@ -1066,4 +1258,11 @@ html, body {
  
 .dis-button{
     background: gray;
+    border: gray 1px solid;
+    color: white;
+}
+.dis-button:hover{
+    background: gray;
+    border: gray 1px solid;
+    color: white;
 }
