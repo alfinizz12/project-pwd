@@ -66,9 +66,10 @@ function booking($session, $data)
     $date = $_POST["checkin"];
     $date_out = $_POST['checkout'];
     $guest = $_POST['number'];
-    $request = $_POST['request'];
-    if (empty($request)) {
+    if (!isset($data['request'])) {
         $request = "None";
+    } else {
+        $request = $data['request'];
     }
     
     $payment = $_POST['payment'];
@@ -126,7 +127,8 @@ function booking($session, $data)
                 '$payment',
                 '$total',
                 '$id_room',
-                '$session'
+                '$session',
+                ''
             )"
     );
 
@@ -249,7 +251,8 @@ function act_booking($session, $data)
             '$date',
             '$payment',
             '$id_act',
-            '$session'
+            '$session',
+            ''
         )"
     );
 
@@ -305,9 +308,10 @@ function editRes($session, $data){
     $date = $data["checkin"];
     $date_out = $data['checkout'];
     $guest = $data['number'];
-    $request = $data['request'];
-    if (empty($request)) {
+    if (!isset($data['request'])) {
         $request = "None";
+    } else {
+        $request = $data['request'];
     }
     
     $payment = $data['payment'];
@@ -360,11 +364,11 @@ function editRes($session, $data){
                 date_out = '$date_out',
                 guest = '$guest',
                 payment = '$payment',
-                total = '$total',
+                total = $total,
                 resort_id = '$id_room',
                 user_id_resort = '$session'
                 WHERE id = $id;
-            "
+        "
     );
     return mysqli_affected_rows($connection);
 }
@@ -373,5 +377,12 @@ function deleteRes($id){
     global $connection;
 
     $delete = $connection->query("DELETE FROM resort_booking WHERE id = $id");
+    return mysqli_affected_rows($connection);
+}
+
+function completeBook($id, $type){
+    global $connection;
+
+    $done = $connection->query("UPDATE $type SET status = 1 WHERE id = $id");
     return mysqli_affected_rows($connection);
 }
