@@ -9,8 +9,10 @@
     if(isset($_POST['booking-button'])){
         if(editAct($_SESSION['id'] ,$_POST) > 0){
             echo "<script> alert('Booking Updated Successfully!'); window.location.href='profile.php'; </script>";
+        } else if(editRes($_SESSION['id'], $_POST) == 0) {
+            header("Location: profile.php");
         } else {
-            echo "<script> alert('Update Failed'); window.location.href='profile.php'; </script>";
+            echo "<script> alert('Booking Update Failed!'); window.location.href='profile.php'; </script>";
         }
     }
 
@@ -53,7 +55,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Edit-Activity-Ticket</title>
     <style>
         body {
             background-image: url(img/sand.png);
