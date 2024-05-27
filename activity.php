@@ -79,77 +79,83 @@ if (isset($_POST['booking-button'])) {
         </nav>
     </header>
 
-    <!-- 
-    <div class="act-list">
-        <h1 id="textabove">See Our Activity</h1>
-        <div class="act-item">
+    <div class="act-container">
+        <div id="slide">
+            <div class="activity-item" style="background: url(img/4.png) no-repeat, url(img/ski.png) no-repeat; background-size: 0, cover; background-position: center, 0px;">
+                <!-- <div class="act-title">Jet Ski</div> -->
+                <div class="act-content">
+                    <!-- <img src="img/ski.png" alt=""> -->
+                    <div class="act-name">Jet Ski</div>
+                    <div class="act-desc">
+                        <ul>
+                            <li>Feel the ocean's pulse as you race across waves.</li>
+                            <li>Savor the thrill of speeding through the water.</li>
+                            <li>Master control and agility with every twist and turn.</li>
+                            <li>Craft memories that echo the roar of engines, waves, and laughter.</li>
+                        </ul>
+                        <h5><b>Start from Rp150.000/pax</b></h5>
+                    </div>
+                    <a class="button" onclick=modalPopUp(4)>Reserve</a>
+                </div>
+            </div>
+            <div class="activity-item" style="background: url(img/2.png) no-repeat, url(img/selam.png)no-repeat; background-size: 0, cover; background-position: center, center;">
+                <!-- <div class="act-title">Diving</div> -->
+                <div class="act-content">
+                    <!-- <img src="img/selam.png" alt=""> -->
+                    <div class="act-name">Diving</div>
+                    <div class="act-desc">
+                        <ul>
+                            <li>Explore vibrant underwater worlds</li>
+                            <li>Dive into history and uncover hidden treasures</li>
+                            <li>Encounter sea turtles, manta rays, and more</li>
+                            <li>Witness bioluminescent wonders under the stars</li>
+                            <li>Capture the magic with photography and videography</li>
+                        </ul>
+                        <h5><b>Start from Rp500.000/pax</b></h5>
+                    </div>
+                    <a class="button" onclick=modalPopUp(1)>Reserve</a>
+                </div>
+            </div>
+            <div class="activity-item" style="background: url(img/1.png) no-repeat, url(img/slancar.png)no-repeat; background-size: 0, cover; background-position: center, center;">
+                <!-- <div class="act-title">Surfing</div> -->
+                <div class="act-content">
+                    <!-- <img src="img/slancar.png" alt=""> -->
+                    <div class="act-name">Surfing</div>
+                    <div class="act-desc">
+                        <ul>
+                            <li>Ride the waves and embrace the thrill of the ocean</li>
+                            <li>Catch the perfect wave and ride the rush.</li>
+                            <li>Balance, agility, and nature's harmony meet.</li>
+                            <li>Laughter, stories, bonds that never fade.s</li>
+                            <li>Capture the moment, freeze time with your lens.</li>
+                        </ul>
+                        <h5><b>Start from Rp170.000/pax</b></h5>
+                    </div>
+                    <a class="button" onclick=modalPopUp(2)>Reserve</a>
+                </div>
+            </div>
+            <div class="activity-item" style="background: url(img/3.png) no-repeat, url(img/brenang.png)no-repeat; background-size: 0, cover; background-position: center, center;">
+                <!-- <div class="act-title">Snorkeling</div> -->
+                <div class="act-content">
+                    <!-- <img src="img/brenang.png" alt=""> -->
+                    <div class="act-name">Snorkeling</div>
+                    <div class="act-desc">
+                        <ul>
+                            <li>Discover vibrant marine life just below the surface.</li>
+                            <li>Feel the thrill of gliding through crystal-clear waters.</li>
+                            <li>Experience nature's beauty firsthand.</li>
+                            <li>Capture unforgettable moments.</li>
+                        </ul>
+                        <h5><b>Start from Rp220.000/pax</b></h5>
+                    </div>
+                    <a class="button" onclick=modalPopUp(3)>Reserve</a>
+                </div>
+            </div>
 
         </div>
-    </div> -->
-
-
-    <div class="act-list">
-        <h1 id="textabove">See Our Activity</h1>
-        <div class="act-item">
-            <div class="act-info-left">
-                <h2><b>Diving</b></h2>
-                <ul>
-                    <li>Explore vibrant underwater worlds</li>
-                    <li>Dive into history and uncover hidden treasures</li>
-                    <li>Encounter sea turtles, manta rays, and more</li>
-                    <li>Witness bioluminescent wonders under the stars</li>
-                    <li>Capture the magic with photography and videography</li>
-                </ul>
-                <h5><b>Start from Rp500.000/pax</b></h5>
-                <a class="button" onclick=modalPopUp(1)>Reserve</a>
-            </div>
-            <img src="img/dive.png" alt="">
-        </div>
-
-        <div class="act-item">
-            <div class="act-info-right">
-                <h2><b>Surfing</b></h2>
-                <ul>
-                    <li>Ride the waves and embrace the thrill of the ocean</li>
-                    <li>Catch the perfect wave and ride the rush.</li>
-                    <li>Balance, agility, and nature's harmony meet.</li>
-                    <li>Laughter, stories, bonds that never fade.s</li>
-                    <li>Capture the moment, freeze time with your lens.</li>
-                </ul>
-                <h5><b>Start from Rp170.000/pax</b></h5>
-                <a class="button" onclick=modalPopUp(2)>Reserve</a>
-            </div>
-            <img src="img/surf.png" alt="">
-        </div>
-
-        <div class="act-item">
-            <div class="act-info-left">
-                <h2><b>Snorkeling</b></h2>
-                <ul>
-                    <li>Discover vibrant marine life just below the surface.</li>
-                    <li>Feel the thrill of gliding through crystal-clear waters.</li>
-                    <li>Experience nature's beauty firsthand.</li>
-                    <li>Capture unforgettable moments.</li>
-                </ul>
-                <h5><b>Start from Rp220.000/pax</b></h5>
-                <a class="button" onclick=modalPopUp(3)>Reserve</a>
-            </div>
-            <img src="img/snor.png" alt="">
-        </div>
-
-        <div class="act-item">
-            <div class="act-info-right">
-                <h2><b>Jet Ski</b></h2>
-                <ul>
-                    <li>Feel the ocean's pulse as you race across waves.</li>
-                    <li>Savor the thrill of speeding through the water.</li>
-                    <li>Master control and agility with every twist and turn.</li>
-                    <li>Craft memories that echo the roar of engines, waves, and laughter.</li>
-                </ul>
-                <h5><b>Start from Rp150.000/pax</b></h5>
-                <a class="button" onclick=modalPopUp(4)>Reserve</a>
-            </div>
-            <img src="img/jet.png" alt="">
+        <div class="button-act-item">
+            <button id="previous"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
         </div>
     </div>
 
@@ -252,7 +258,7 @@ if (isset($_POST['booking-button'])) {
                         <div class="col">
                             <label class="paycard" for="tf-bank"><input type="radio" name="paycard" id="tf-bank" value="Bank Transfer">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
                         </div>
-                    </div>
+                    </div><br>
 
                     <div class="w3-container w3-padding-16">
                         <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
@@ -268,6 +274,16 @@ if (isset($_POST['booking-button'])) {
 
 
     <script>
+        document.getElementById('next').onclick = function() {
+            let lists = document.querySelectorAll('.activity-item');
+            document.getElementById('slide').appendChild(lists[0]);
+        }
+        document.getElementById('previous').onclick = function() {
+            let lists = document.querySelectorAll('.activity-item');
+            document.getElementById('slide').prepend(lists[lists.length - 1]);
+        }
+
+
         function modalPopUp(data) {
             var id = data;
             document.getElementById('<?= $must_login ?>').style.display = 'block';
