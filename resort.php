@@ -14,13 +14,13 @@ if (!isset($_SESSION['id'])) {
     $photo = $connection->query("SELECT * FROM user WHERE id = $id");
     $img_profile = $photo->fetch_object();
     $profile = "<form action='profile.php'>
-  <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
-</form>";
+    <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
+    </form>";
     $must_login = "bookform";
 }
 
-if (isset($_POST['booking-button'])) {
-    if (booking($_SESSION["id"], $_POST) > 0) {
+if(isset($_POST['booking-button'])){
+    if(booking($_SESSION["id"],$_POST) > 0){
         echo "<script>
             alert('Berhasil booking!, silahkan cek di profil anda!');
         </script>";
@@ -71,7 +71,7 @@ if (isset($_POST['booking-button'])) {
                             <a class="active" aria-current="page" href="resort.php">Resort</a>
                         </li>
                         <li>
-                            <a href="contact">Contact Us</a>
+                            <a href="contactus.php">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -123,7 +123,7 @@ if (isset($_POST['booking-button'])) {
                     <a href="#" class="room-book" onclick=modalPopUp(3)>Booking</a>
                 </div>
             </div>
-
+            
         </div>
     </div>
 
@@ -164,20 +164,19 @@ if (isset($_POST['booking-button'])) {
     </footer>
 
     <!-- Modal Booking-->
-    <div class="w3-container">
+    <div class="w3-container" style="z-index: 12;">
         <div id="bookform" class="w3-modal">
             <div class="w3-modal-content w3-card-4 w3-animate-zoom bookform-box" style="max-width:800px">
                 <div class="w3-center"><br>
                     <span onclick="document.getElementById('bookform').style.display='none'" class="w3-button w3-xlarge w3-display-topright cancel-top">&times;</span>
-                    <h2><b>Booking Form</b></h2>
+                    <h2><b>Resort Booking Form</b></h2>
                 </div>
                 <form class="resort-booking" action="resort.php" method="post">
-                    <label for="name">Full Name</label><br>
-                    <input class="input-booking fullname-input" type="text" placeholder="Insert Your Full Name" name="name" id="name" required>
+                    
                     <div class="row"><br>
                         <div class="col-6">
-                            <label for="email-book">Email</label><br>
-                            <input class="input-booking" type="text" placeholder="Insert Your Email" name="email-book" id="email-book" required><br>
+                        <label for="name">Full Name</label><br>
+                        <input class="input-booking" type="text" placeholder="Insert Your Full Name" name="name" id="name" required><br>
                             <label for="checkin">Check-in date</label><br>
                             <input class="input-booking" type="date" id="checkin" name="checkin" required>
                             <label for="tiperoom">Select your room type</label>
@@ -211,7 +210,7 @@ if (isset($_POST['booking-button'])) {
 
                     <label for="additional">Additional Request :</label>
                     <div class="form-check form-switch cekbok">
-                        <input class="form-check-input" type="checkbox" role="switch" id="extrabed" name="request[]" value="Extra Bed">
+                        <input class="form-check-input" type="checkbox" role="switch" id="extrabed" name="request[]"  value="Extra Bed">
                         <label class="form-check-label" for="extrabed">Extra Bed + Rp150.000</label>
                     </div>
                     <div class="form-check form-switch cekbok">
@@ -227,7 +226,7 @@ if (isset($_POST['booking-button'])) {
                         <div class="col">
                             <label class="paycard" for="tf-bank"><input type="radio" name="payment" id="tf-bank" value="Bank Transfer">&emsp;<i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer</label>
                         </div>
-                    </div>
+                    </div><br>
 
                     <div class="w3-container w3-padding-16 button-booking-form">
                         <button onclick="document.getElementById('bookform').style.display='none'" type="button" class="form-book-cancel">Cancel</button>
@@ -235,7 +234,7 @@ if (isset($_POST['booking-button'])) {
                     </div>
                 </form>
 
-
+                
             </div>
         </div>
     </div>
@@ -282,21 +281,22 @@ if (isset($_POST['booking-button'])) {
             }
         }
 
-        function modalPopUp(data) {
+        function modalPopUp(data){
             var id = data;
-            document.getElementById('<?= $must_login ?>').style.display = 'block';
+            document.getElementById('<?= $must_login ?>').style.display='block';
             // untuk mengambil id berdasarkan tipe room
-            if (id == 1) {
+            if(id == 1){
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 1;
-            } else if (id == 2) {
+            } else if (id == 2){
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 2;
-            } else if (id == 3) {
+            } else if(id == 3){
                 var dropdown = document.getElementById("tiperoom");
                 dropdown.selectedIndex = 3;
             }
         }
+
     </script>
 
 </body>
