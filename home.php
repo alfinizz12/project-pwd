@@ -184,7 +184,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Winter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>This is a very nice place to stay!</p><br>
           <h6>2 weeks ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like1')"><i class="fa-regular fa-thumbs-up" id="like1"></i></button></h6>
         </div>
       </div>
@@ -195,7 +194,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Karina&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>Amazing dive spots, saw so much marine life!</p><br>
           <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like2')"><i class="fa-regular fa-thumbs-up" id="like2"></i></button></h6>
         </div>
       </div>
@@ -206,7 +204,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Zilong&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Incredible resort, beachfront access makes<br>everything easy!</p>
           <h6>1 week ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like3')"><i class="fa-regular fa-thumbs-up" id="like3"></i></button></h6>
         </div>
       </div>
@@ -217,7 +214,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Jeremy&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>Jet ski rentals available, fun for the whole family!</p><br>
           <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like4')"><i class="fa-regular fa-thumbs-up" id="like4"></i></button></h6>
         </div>
       </div>
@@ -228,7 +224,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Alexa&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Snorkeling gear provided, hassle-free and<br>enjoyable!</p>
           <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like5')"><i class="fa-regular fa-thumbs-up" id="like5"></i></button></h6>
         </div>
       </div>
@@ -239,7 +234,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Aamon&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Jet skiing with friends, unforgettable <br> memories made!</p>
           <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like6')"><i class="fa-regular fa-thumbs-up" id="like6"></i></button></h6>
         </div>
       </div>
@@ -250,7 +244,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Berry&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Beachside bonfires after a day of fun, <br>magical evenings!</p>
           <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like7')"><i class="fa-regular fa-thumbs-up" id="like7"></i></button></h6>
         </div>
       </div>
@@ -261,7 +254,6 @@ if (!isset($_SESSION['id'])) {
           <h3>Keyla&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Beachfront lounging after activities, pure <br>relaxation!</p>
           <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
-            <!-- <button onclick="dislikeactive()"><i class="fa-regular fa-thumbs-down" id="dislike"></i></button> -->
             <button onclick="likeactive('like8')"><i class="fa-regular fa-thumbs-up" id="like8"></i></button></h6>
         </div>
       </div>
@@ -338,16 +330,6 @@ if (!isset($_SESSION['id'])) {
       localStorage.setItem(buttonId, "false");
     }
   }
-    // function dislikeactive(){
-    //   let likeicon = document.getElementById("dislike");
-    //     if (likeicon.classList.contains("fa-regular")) {
-    //         likeicon.classList.remove("fa-regular");
-    //         likeicon.classList.add("fa-solid");
-    //     } else {
-    //         likeicon.classList.remove("fa-solid");
-    //         likeicon.classList.add("fa-regular");
-    //     }
-    // }
   </script>
 
 </html>
