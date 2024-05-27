@@ -17,6 +17,7 @@ body {
 }
 
 
+
 /* home-page */
 .home-page {
     margin: 0px;
@@ -167,7 +168,7 @@ nav form a:hover{
     padding: 10px 20px;
     background: white;
     border-radius: 30px;
-    align-items: center;
+    align-items: center; 
 }
 .home-page .box {
     animation: .5s slide-right .5s forwards;
@@ -393,74 +394,9 @@ footer .bi:hover{
 .activity-page  footer {
     margin-top: 40%;
 }
-/* .act-item img {
-    position: block;
-    border-radius: 30px;
-    margin: 0;
-    padding: 0;
-    width: 100%; 
-}
-#textabove {
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    margin-bottom: 40px;
-} */
-
-/* .act-list{
-    margin: 40px 50px;
-    padding: 0;
-}
-.act-info-left {
-    font-size: 20px;
-    color: black;
-    position: absolute;
-    text-align: left;
-    padding: 70px;
-    margin-left: 0;
-}
-.act-item {
-    width: fit-content;
-    margin-bottom: 30px;
-    border-radius: 30px;
-    background: #caf1ec;
-}
-.act-info h2{
-    font-size: 40px;
-    font-weight: bold;
-}
-.act-item a:hover {
-    font-weight: bold;
-    color: #209785;
-    background: white;
-    transition: .2s ease-in-out;
-}
-.act-info-right {
-    font-size: 20px;
-    color: black;
-    position: absolute;
-    text-align: left;
-    padding: 70px;
-    margin-left: 600px;
-    margin-right: 0;
-}
-.act-item a {
-    font-size: 20px;
-    text-decoration: none;
-    font-weight: 500;
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    padding: 5px 20px;
-    margin-top: 20px;
-    width: 30%;
-    border-radius: 50px;
-    background: #209785;
-    color: white;
-} */
-header {
+.activity-page header {
     position: relative; /* Enable z-index to work */
-    z-index: 10; /* Higher than the z-index of .activity-item */
+    z-index: 4; /* Higher than the z-index of .activity-item */
 }
 .act-container {
     position: absolute;
@@ -477,14 +413,12 @@ header {
     width: max-content;
     margin-top: 50px;
   }
-
   .activity-item {
     width: 200px;
     height: 200px;
     background-position: 50% 50%;
     display: inline-block;
     transition: 0.5s;
-    /* background-size:; */
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -492,21 +426,8 @@ header {
     border-radius: 20px;
     box-shadow: 0 30px 40px #252525;
   }
-  /* .act-title {
-    transform: translate(0, -500%);
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    top: 60%;
-    left: 25%;
-    z-index: 4;
-    position: absolute;
-    display: none;
-  } */
   .activity-item img {
     position: absolute;
-    /* z-index: 0; */
-    /* transform: translate(-6%,-20%); */
     margin-left: -30%;
     margin-top: -50%;
     display: block;
@@ -694,6 +615,7 @@ header {
     margin: 20px;
 }
 .bookform-box{
+    z-index: 5;
     border-radius: 20px;
 }
 .cancel-top {
@@ -1239,13 +1161,6 @@ html, body {
     height: 45vh;
 }
 
-/* Activity-booking */
-.act-book-form {
-    justify-content: center;
-    border: solid 1px black;
-}
-
-
 
 /* contact-us-page */
 .contactus-card {
@@ -1256,6 +1171,8 @@ html, body {
     backdrop-filter: blur(5px);
 }
  
+
+/* profile ticket button */
 .dis-button{
     background: gray;
     border: gray 1px solid;
