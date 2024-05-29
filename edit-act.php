@@ -55,7 +55,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Edit-Activity-Ticket</title>
+    <link rel="icon" type="image/x-icon" href="img/iconB.png">
+    <title>My Activity Package</title>
     <style>
         body {
             background-image: url(img/sand.png);
@@ -65,8 +66,9 @@
         }
         .card {
             margin-top: 90px;
-            margin-left: 260px;
-            margin-right: 260px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 850px;
             height: 420px;
             box-shadow: 3px 3px #2b77a4;
             border: 2px solid #2b77a4;
@@ -97,10 +99,10 @@
                         <div class="input-booking">
                             <select class="tiperoom" name="tipeact" id="tipeact" required>
                                 <option>Choose activities... </option>
-                                <option <?=actSelect(1)?> value="Diving">Diving</option>
-                                <option <?=actSelect(2)?> value="Surfing">Surfing</option>
-                                <option <?=actSelect(3)?> value="Snorkeling">Snorkeling</option>
-                                <option <?=actSelect(4)?> value="Jet Ski">Jet Ski</option>
+                                <option <?=actSelect("Diving")?> value="Diving">Diving</option>
+                                <option <?=actSelect("Surfing")?> value="Surfing">Surfing</option>
+                                <option <?=actSelect("Snorkeling")?> value="Snorkeling">Snorkeling</option>
+                                <option <?=actSelect("Jet Ski")?> value="Jet Ski">Jet Ski</option>
                             </select>
                         </div>
                         <label for="act-date">Date</label><br>

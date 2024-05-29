@@ -72,11 +72,14 @@ if ($row->total >= 450000 && $row->total <= 650000) {
     } else if ($row->total == 1100000) {
         $extrabed = " ";
         $extrapillow = "checked";
+    } else if ($row->total == 1200000) {
+        $extrabed = "checked";
+        $extrapillow = " ";
     } else if ($row->total == 1250000) {
         $extrabed = "checked";
         $extrapillow = "checked";
     }
-}
+}   
 
 ?>
 
@@ -90,7 +93,8 @@ if ($row->total >= 450000 && $row->total <= 650000) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Edit-Resort-Ticket</title>
+    <link rel="icon" type="image/x-icon" href="img/iconB.png">
+    <title>My Resort Package</title>
     <style>
         body {
             background-image: url(img/sand.png);
@@ -103,8 +107,9 @@ if ($row->total >= 450000 && $row->total <= 650000) {
         .card {
             transform: scale(.95);
             margin-top: 10px;
-            margin-left: 260px;
-            margin-right: 260px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 840.5px;
             height: 600px;
             box-shadow: 3px 3px #2b77a4;
             border: 2px solid #2b77a4;
@@ -136,7 +141,7 @@ if ($row->total >= 450000 && $row->total <= 650000) {
                         <input class="input-booking" type="text" placeholder="Your Phone Number" name="phone" id="phone" value="<?= $row->phone_num ?>" required><br>
                         <label for="checkout">Check-out date</label><br>
                         <input class="input-booking" type="date" id="checkout" name="checkout" value="<?= $row->date_out ?>" required>
-                        <label for="number">Number of Adults :</label>
+                        <label for="number">Number of Guests :</label>
                     </div>
 
                     <div class="type-number">

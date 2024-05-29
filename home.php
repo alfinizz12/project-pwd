@@ -28,6 +28,7 @@ if (!isset($_SESSION['id'])) {
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="img/iconB.png">
   <title>Bluebuk</title>
 </head>
 
@@ -68,7 +69,7 @@ if (!isset($_SESSION['id'])) {
   <div class="upperpage">
     <h1><b>Bluebuk.</b></h1>
     <form class="box">
-      <input type="search" placeholder="Search">
+      <input id="search" type="search" placeholder="Search">
       <a href="">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -184,7 +185,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Winter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>This is a very nice place to stay!</p><br>
           <h6>2 weeks ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like1')"><i class="fa-regular fa-thumbs-up" id="like1"></i></button></h6>
+            <button onclick="likeactive('like1')"><i class="fa-regular fa-thumbs-up" id="like1"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -194,7 +196,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Karina&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>Amazing dive spots, saw so much marine life!</p><br>
           <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like2')"><i class="fa-regular fa-thumbs-up" id="like2"></i></button></h6>
+            <button onclick="likeactive('like2')"><i class="fa-regular fa-thumbs-up" id="like2"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -204,7 +207,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Zilong&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Incredible resort, beachfront access makes<br>everything easy!</p>
           <h6>1 week ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like3')"><i class="fa-regular fa-thumbs-up" id="like3"></i></button></h6>
+            <button onclick="likeactive('like3')"><i class="fa-regular fa-thumbs-up" id="like3"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -214,7 +218,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Jeremy&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p>Jet ski rentals available, fun for the whole family!</p><br>
           <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like4')"><i class="fa-regular fa-thumbs-up" id="like4"></i></button></h6>
+            <button onclick="likeactive('like4')"><i class="fa-regular fa-thumbs-up" id="like4"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -224,7 +229,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Alexa&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Snorkeling gear provided, hassle-free and<br>enjoyable!</p>
           <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like5')"><i class="fa-regular fa-thumbs-up" id="like5"></i></button></h6>
+            <button onclick="likeactive('like5')"><i class="fa-regular fa-thumbs-up" id="like5"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -234,7 +240,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Aamon&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Jet skiing with friends, unforgettable <br> memories made!</p>
           <h6>1 month ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like6')"><i class="fa-regular fa-thumbs-up" id="like6"></i></button></h6>
+            <button onclick="likeactive('like6')"><i class="fa-regular fa-thumbs-up" id="like6"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -244,7 +251,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Berry&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Beachside bonfires after a day of fun, <br>magical evenings!</p>
           <h6>3 months ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like7')"><i class="fa-regular fa-thumbs-up" id="like7"></i></button></h6>
+            <button onclick="likeactive('like7')"><i class="fa-regular fa-thumbs-up" id="like7"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -254,7 +262,8 @@ if (!isset($_SESSION['id'])) {
           <h3>Keyla&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h3><br>
           <p style="margin-bottom: 25px;">Beachfront lounging after activities, pure <br>relaxation!</p>
           <h6>2 months ago &emsp;&emsp;&emsp;&emsp;
-            <button onclick="likeactive('like8')"><i class="fa-regular fa-thumbs-up" id="like8"></i></button></h6>
+            <button onclick="likeactive('like8')"><i class="fa-regular fa-thumbs-up" id="like8"></i></button>
+          </h6>
         </div>
       </div>
     </div>
@@ -303,8 +312,8 @@ if (!isset($_SESSION['id'])) {
   </footer>
 </body>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
     let likeButtons = document.querySelectorAll(".fa-thumbs-up");
     likeButtons.forEach(function(button) {
       let isLiked = localStorage.getItem(button.id);
@@ -330,6 +339,39 @@ if (!isset($_SESSION['id'])) {
       localStorage.setItem(buttonId, "false");
     }
   }
-  </script>
+
+  // Tambahkan event listener untuk menangani event keydown pada input field
+  document.getElementById('search').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Mencegah perilaku default dari tombol Enter
+      handleSearch(); // Panggil fungsi handleSearch saat Enter ditekan
+    }
+  });
+
+  // Fungsi untuk menangani pencarian dan redirect
+  function handleSearch() {
+    var inputText = document.getElementById('search').value.toLowerCase(); // Mengambil nilai dari input dan mengubahnya menjadi huruf kecil
+    var keywords = inputText.split(' '); // Memecah kalimat menjadi kata-kata
+
+    // Definisikan kata kunci dan halaman yang sesuai
+    var pages = {
+      'home': 'home.php',
+      'resort': 'resort.php',
+      'activity': 'activity.php'
+    };
+
+    // Cari kata kunci dalam input
+    for (var i = 0; i < keywords.length; i++) {
+      var keyword = keywords[i];
+      if (pages[keyword]) {
+        window.location.href = pages[keyword]; // Redirect ke halaman yang sesuai
+        return; // Hentikan eksekusi lebih lanjut setelah redirect
+      }
+    }
+
+    // Jika tidak ada kata kunci yang cocok, tampilkan pesan kesalahan
+    alert('Halaman tidak ditemukan!');
+  }
+</script>
 
 </html>

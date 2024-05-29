@@ -42,7 +42,8 @@ if (isset($_POST['booking-button'])) {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Activity</title>
+    <link rel="icon" type="image/x-icon" href="img/iconB.png">
+    <title>Bluebuk : Our Exciting Activity</title>
 </head>
 
 <body class="activity-page">

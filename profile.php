@@ -40,8 +40,16 @@ $user = $connection->query("SELECT * FROM user WHERE id = '$id'");
 $user_data = $user->fetch_object();
 
 // // perintah memilih row pada tabel resort
-$resort_data = $connection->query("SELECT * FROM resort_booking WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY date DESC");
-$activity_data = $connection->query("SELECT * FROM activity_booking WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY date DESC");
+$resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id  WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY date");
+
+$activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY date");
+
+if(isset($_POST['search'])){
+    $search = $_POST['search'];
+    $resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id WHERE (rb.name LIKE '%$search%' OR r.packet_name LIKE '%$search%' OR rb.payment LIKE '%$search%') AND (user_id_resort = $id AND status = 0)");
+
+    $activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, ab.activity_ID, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE (ab.name LIKE '%$search%' OR a.act_name LIKE '%$search%' OR ab.payment LIKE '%$search%') AND (user_id_act = '$user_data->id' AND status = 0)");
+}
 
 // menhitung jumlah row pada table
 $count_data = mysqli_num_rows($resort_data);
@@ -56,7 +64,8 @@ $count_data = mysqli_num_rows($resort_data);
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Profile</title>
+    <link rel="icon" type="image/x-icon" href="img/iconB.png">
+    <title>Bluebuk : My Profile</title>
 </head>
 
 <body class="profile-page">
@@ -64,8 +73,8 @@ $count_data = mysqli_num_rows($resort_data);
         <form action="home.php"><button class="back-button"><i class="fa-solid fa-arrow-left"></i></button></form>
         <h2>My Profile</h2>
         <div class="profile-search">
-            <form class="box">
-                <input type="search" placeholder="Search">
+            <form class="box" method="post">
+                <input type="search" placeholder="Search" name="search">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -103,21 +112,18 @@ $count_data = mysqli_num_rows($resort_data);
                     <?php while ($activity_data_fetch = $activity_data->fetch_object()) : ?>
 
                         <?php
-                        $activity = $connection->query("SELECT * FROM activity WHERE id = $activity_data_fetch->activity_ID");
-                        $act_detail = $activity->fetch_object();
-                        $act_type = $act_detail->act_name;
-                        $total = $act_detail->harga;
 
                         $date_now = new DateTime();
                         $date_check = new DateTime($activity_data_fetch->date);
-                        $button_status = "";
-                        $button = "";
+                        $button_status = $button = $done_button = $done_status = "";
                         if ($date_now >= $date_check) {
                             $button_status = "disabled";
                             $button = "dis-button";
+                        } else {
+                            $done_button = "dis-button";
+                            $done_status = "disabled";
                         }
                         ?>
-
                         <div class="ticket-book">
                             <h2>My Ticket</h2>
                             <div class="ticket-up">
@@ -125,7 +131,7 @@ $count_data = mysqli_num_rows($resort_data);
                             </div>
                             <div class="ticket-up">
                                 <h3>Activity Booking</h3>
-                                <h3><?= $act_type ?></h3>
+                                <h3><?= $activity_data_fetch->act_name ?></h3>
                             </div>
                             <div>
                                 <table class="ticket-inside">
@@ -137,28 +143,26 @@ $count_data = mysqli_num_rows($resort_data);
                                         <?php
                                         $activity_data_fetch->date = date("d M Y", strtotime($activity_data_fetch->date));
 
-                                        $total = 'Rp. ' . number_format($total, 0, ',', ',');
+                                        $activity_data_fetch->harga = 'Rp. ' . number_format($activity_data_fetch->harga, 0, ',', ',');
                                         ?>
                                         <td><?= $activity_data_fetch->date; ?></td>
-                                        <td><?= $total ?></td>
+                                        <td><?= $activity_data_fetch->harga ?></td>
                                     </tr>
 
                                 </table>
                                 <div class="cancel-edit-booking">
-                                    <form action="">
                                     <form action="" method="post">
                                         <input type="hidden" name="id" value="<?= $activity_data_fetch->id ?>">
                                         <input type="hidden" name="complete" value="activity_booking">
-                                        <td><button class="done-book" type="submit" name="done" onclick="return confirm('Yakin ingin menyelesaikan pemesanan?')"><i class="fa-solid fa-check"></i></button></td>
-                                    </form>
+                                        <td><button class="done-book <?php if (isset($done_button)) echo $done_button; ?>" type="submit" name="done" <?php if (isset($done_status)) echo $done_status?> onclick="return confirm('Yakin ingin menyelesaikan pemesanan?')"><i class="fa-solid fa-check"></i></button></td>
                                     </form>
                                     <form action="" method="post">
                                         <input type="hidden" name="id_del" value="<?= $activity_data_fetch->id ?>">
                                         <td><button name="cancel" class="cancel-booking <?php if (isset($button)) echo $button; ?>" <?php if (isset($button_status)) echo $button_status ?> onclick="return confirm('Yakin ingin cancel pemesanan?')"><i class="fa-solid fa-xmark"></i></button></td>
                                     </form>
                                     <form action="edit-act.php" method="post">
-                                        <input type="hidden" name="id_edit" value="<?= $activity_data_fetch->id ?>">
-                                        <input type="hidden" name="activity" value="<?= $activity_data_fetch->activity_ID ?>">
+                                        <input type="hidden" name="id_edit" value="<?= $activity_data_fetch->id?>">
+                                        <input type="hidden" name="activity" value="<?= $activity_data_fetch->act_name ?>">
                                         <td><button name="edit-act-bt" class="edit-booking <?php if (isset($button)) echo $button; ?>" <?php if (isset($button_status)) echo $button_status ?>><i class="fa-solid fa-pen"></i></button></td>
                                     </form>
                                 </div>
@@ -175,16 +179,15 @@ $count_data = mysqli_num_rows($resort_data);
                     <?php while ($resort_data_fetch = $resort_data->fetch_object()) : ?>
 
                         <?php
-                        $resort = $connection->query("SELECT * FROM resort WHERE id = $resort_data_fetch->resort_id");
-                        $res_detail = $resort->fetch_object();
-                        $room_type = $res_detail->packet_name;
                         $date_now = new DateTime();
                         $date_check_res = new DateTime($resort_data_fetch->date);
-                        $button_status_r = "";
-                        $button_r = "";
+                        $button_status_r = $button_r = $done_button_r = $done_status_r = "";
                         if ($date_now >= $date_check_res) {
                             $button_status_r = "disabled";
                             $button_r = "dis-button";
+                        } else {
+                            $done_button_r = "dis-button";
+                            $done_status_r = "disabled";
                         }
                         ?>
 
@@ -195,7 +198,7 @@ $count_data = mysqli_num_rows($resort_data);
                             </div>
                             <div class="ticket-up">
                                 <h3>Resort Booking</h3>
-                                <h3><?= $room_type ?> Room</h3>
+                                <h3><?= $resort_data_fetch->packet_name ?> Room</h3>
                             </div>
                             <div>
                                 <table class="ticket-inside">
@@ -223,7 +226,7 @@ $count_data = mysqli_num_rows($resort_data);
                                     <form action="" method="post">
                                         <input type="hidden" name="id" value="<?= $resort_data_fetch->id ?>">
                                         <input type="hidden" name="complete" value="resort_booking">
-                                        <td><button class="done-book" type="submit" name="done" onclick="return confirm('Yakin ingin menyelesaikan pemesanan?')"><i class="fa-solid fa-check"></i></button></td>
+                                        <td><button class="done-book <?php if (isset($done_button_r)) echo $done_button_r ?>" type="submit" name="done" <?php if (isset($done_status_r)) echo $done_status_r ?> onclick="return confirm('Yakin ingin menyelesaikan pemesanan?')"><i class="fa-solid fa-check"></i></button></td>
                                     </form>
                                     <form action="" method="post">
                                         <input type="hidden" name="id_cancel" value="<?= $resort_data_fetch->id ?>">
