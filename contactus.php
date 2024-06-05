@@ -4,7 +4,6 @@ include 'functionLogic.php';
 if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
-    $login = " ";
 } else {
     $login_class = " ";
     $login_text = " ";
@@ -66,16 +65,14 @@ if (!isset($_SESSION['id'])) {
         </nav>
     </header>
 
-
     <h1 class="contact-us-title">Contact Us</h1>
     <div class="box-contact card" style="padding-left: 10px; padding-right: 10px;">
         <div class="card-body">
             <h3 style="text-align: center;">We love to hear from you</h3><br>
-            <form action="">
+            <form action="mailto:alfinizzudien12@gmail.com" method="GET" enctype="text/plain">
                 <input class="form-control" type="text" placeholder="Name" required><br>
-                <input class="form-control" type="email" placeholder="email" required><br>
                 <textarea class="form-control" name="feedback" id="feedback" placeholder="your feedback" requireds></textarea><br>
-                <button class="btn" style="color: white; background: #2b77a4" type="submit" >Submit</button>
+                <button class="btn" style="color: white; background: #2b77a4" type="submit">Submit</button>
             </form>
         </div>
     </div>
