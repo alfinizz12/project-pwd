@@ -4,6 +4,7 @@ include 'functionLogic.php';
 if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
+    $login = " ";
 } else {
     $login_class = " ";
     $login_text = " ";
