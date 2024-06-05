@@ -1,0 +1,934 @@
+.main {
+    width: 350px;
+    height: 500px;
+    background: rgb(0, 0, 0);
+    overflow: hidden;
+    background: url(lukisan.jpg) no-repeat center/cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 20px black;
+}
+#cek {
+    display: none;
+}
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.main label {
+    color: white;
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.main input {
+    width: 60%;
+    height: 40px;
+    background: white;
+    justify-content: center;
+    display: flex;
+    margin: 15px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+.main button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: white;
+    background: black;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+.main button:hover {
+    color: black;
+    background: white;
+}
+.login {
+    height: 460px;
+    background: white;
+    border-radius: 60% / 10%;
+    transform: translateY(-180px);
+    transition: .8s ease-in-out;
+}
+.login label {
+    color: black;
+    transform: scale(.6);
+}
+#chk:checked ~ .login {
+    transform: translateY(-500px);
+}
+#chk:checked ~ .login label {
+    transform: scale(1);
+}
+#chk:checked ~ .signup {
+    transform: scale(.6);
+}
+
+<!-- Login Form -->
+<div class="main">
+  <input type="checkbox" id="cek" aria-hidden="true">
+
+  <div class="signup">
+    <form>
+      <label for="cek" aria-hidden="true">Sign Up</label>
+      <input type="text" name="uname" placeholder="Username" required="">
+      <input type="password" name="pass" placeholder="Password" required="">
+      <button>Sign Up</button>
+    </form>
+  </div>
+
+  <div class="login">
+    <form>
+      <label for="cek" aria-hidden="true">Login</label>
+      <input type="email" name="email" placeholder="email" required="">
+      <input type="password" name="pass" placeholder="Password" required="">
+      <button>Sign Up</button>
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="container" id="container">
+<div class="form-container sign-up-container">
+  <form action="#">
+    <h1>Create Account</h1>
+    <div class="infield">
+      <input type="text" placeholder="Name" />
+      <label></label>
+    </div>
+    <div class="infield">
+      <input type="email" placeholder="Email" name="email" />
+      <label></label>
+    </div>
+    <div class="infield">
+      <input type="password" placeholder="Password" />
+      <label></label>
+    </div>
+    <button>Sign Up</button>
+  </form>
+</div>
+
+<div class="form-container sign-in-container">
+  <form action="#">
+    <h1>Sign in</h1>
+    <div class="infield">
+      <input type="email" placeholder="Email" name="email" />
+      <label></label>
+    </div>
+    <div class="infield">
+      <input type="password" placeholder="Password" />
+      <label></label>
+    </div>
+    <a href="#" class="forgot">Forgot your password?</a>
+    <button>Sign In</button>
+  </form>
+</div>
+
+<div class="overlay-container" id="overlaycon">
+  <div class="overlay">
+    <div class="overlay-panel overlay-left">
+      <h1>Welcome Back!</h1>
+      <p>To keep connected with us please login with your personal info</p>
+      <button>Sign In</button>
+    </div>
+    <div class="overlay-panel overlay-right">
+      <h1>Hello, Friend!</h1>
+      <p>Enter your personal details and start journey with us</p>
+      <button>Sign Up</button>
+    </div>
+  </div>
+  <button id="overlaybtn"></button>
+</div>
+</div>
+
+<script>
+const container = document.getElementById('container');
+const overlaycon = document.getElementById('container');
+const overlaybtn = document.getElementById('container');
+
+overlaybtn.addEventListener('click', ()=> {
+  container.classList.toggle(right-panel-active);
+
+  overlaybtn.classList.remove('btnScaled');
+  window.requestAnimationFrame ( ()=> {
+      overlaybtn.classList.add('btnScaled')
+  })
+});
+</script>
+
+:root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+body .container {
+    height: 100vh;
+    background: #f6f5f7;
+    display: grid;
+    place-content: center;
+}
+.container {
+    position: relative;
+    width: 850px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 25px 30px 55px black;
+    border-radius: 13px;
+    overflow: hidden;
+}
+.form-container {
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    padding: 0px 40px;
+    transition: all 0.6s ease-in-out;
+}
+.sign-up-container {
+    opacity: 0;
+    z-index: 1;
+}
+.sign-in-container {
+    z-index: 2;
+}
+.container form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px;
+}
+h1 {
+    color: black;
+}
+.infield {
+    position: relative;
+    margin: 8px 0px;
+    width: 100%;
+}
+.container input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #f6f5f7;
+    border: none;
+    outline: none;
+}
+.container label {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background: var(--linear-grad);
+    transition: 0.3s;
+}
+input:focus ~ label {
+    width: 100%;
+}
+.container a {
+    color: grey;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0px;
+}
+.container a .forgot {
+    padding-bottom: 3px;
+    border-bottom: 2px solid white;
+}
+.container button {
+    border-radius: 20px;
+    border: 1px solid var(--grad-clr1);
+    background: var(--grad-clr2);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.form-container button {
+    margin-top: 17px;
+    transition: 80ms ease-in;
+}
+.form-container button:hover {
+    background: white;
+    color: var(--grad-clr1);
+}
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 9;
+}
+#overlaybtn {
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 304px;
+    transform: translateX(-50%);
+    width: 143.67px;
+    height: 40px;
+    border: 1px solid white;
+    background: transparent;
+    border-radius: 20px;
+}
+.overlay {
+    position: relative;
+    background: var(--linear-grad);
+    color: white;
+    left: -150%;
+    height: 100%;
+    width: 250%;
+    transition: transform 0.6s ease-in-out;
+}
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 40px;
+    height: 100%;
+    width: 340px;
+    transition: 0.6s ease-in-out;   
+}
+.overlay-left {
+    right: 60%;
+    transform: translateX(-12%);
+}
+.overlay-right {
+    right: 0;
+    transform: translateX(0%);
+}
+.overlay-panel h1 {
+    color: white;
+}
+.container p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 25px 0px 35px;
+}
+.overlay-panel button {
+    border: none;
+    background-color: transparent;
+}
+.right-panel-active .overlay-container {
+    transform: translateX(-150%);
+}
+.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+.right-panel-active .overlay-left {
+    transform: translateX(25%);
+}
+.right-panel-active .overlay-right {
+    transform: translateX(35%);
+}
+.right-panel-active .sign-in-container {
+    transform: translateX(20%);
+    opacity: 0;
+}
+.right-panel-active .sign-up-container {
+    transform: translateX(66.7%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+@keyframes show {
+    0%, 50% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50.1%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+.btnScaled {
+    animation: scaleBtn 0.6s;
+}
+@keyframes scaleBtn {
+    0% {
+        width: 143.67px;
+    }
+    50% {
+        width: 250px;
+    }
+    100% {
+        width: 143.67px;
+    }
+}
+
+/* ini loginn yg kegita slide */
+<div class="container-login" id="main">
+        <div class="register-form">
+            <form action="" method="post">
+                <h1>Register</h1>
+                <input type="text" name="uname" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="pass" placeholder="Password" required>
+                <input type="password" name="pass" placeholder="Password" required>
+                <button type="submit" name="register">Register</button>
+            </form>
+        </div>
+        <div class="login-form">
+            <form action="" method="post">
+                <h1>Login</h1>
+                <input type="text" name="uname" placeholder="Username" required>
+                <input type="password" name="pass" placeholder="Password" required>
+                <button type="submit" name="login">Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Please login with your personal info</p>
+                    <button id="registerbtn" onclick="register()">Register</button>
+                </div>
+                <div class="overlay-right">
+                    <h1>Hello Friend!</h1>
+                    <p>Please enter with your personal info to register</p>
+                    <button id="loginbtn">Login</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const registerBtn = document.getElementById('registerbtn');
+        const loginBtn = document.getElementById('loginbtn');
+        const main = document.getElementById('main');
+
+        function register(){
+            
+        }
+        registerBtn.addEventListener("click", () => {
+            main.classList.add("right-panel-active");
+        });
+        loginBtn.addEventListener("click", () => {
+            main.classList.remove("right-panel-active");
+        });
+    </script>
+
+    .login-page {
+        box-sizing: border-box;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: white;
+        min-height: 100%;
+        margin: 10%;
+    }
+    .container-login {
+        position: relative;
+        width: 768px; 
+        max-width: 100%;
+        min-height: 480px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 14px 28px black, 0 10px 10px rgb(20, 20, 20);
+    }
+    .login-form, .register-form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+    }
+    .register-form {
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+    .login-form {
+        width: 50%;
+        z-index: 2;
+    }
+    .login-page form {
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+    }
+    .login-page h1 {
+        font-weight: bold;
+        margin: 0;
+    }
+    .login-page p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 15px 0 20px;
+    }
+    .login-page input {
+        background: rgb(223, 223, 223);
+        padding: 12px 15px;
+        margin: 8px 15px;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+    }
+    .login-page button {
+        color: white;
+        background: #209785;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 55px;
+        margin: 20px;
+        border-radius: 20px;
+        border: 1px solid #209785;
+        outline: none;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+    }
+    .login-page button:active {
+        transform: scale(.9);
+    }
+    #loginbtn #registerbtn {
+        background-color: transparent;
+        border: 2px solid white;
+    }
+    .container-login .right-panel-active .register-form {
+        transform: translateX(100%);
+    }
+    .container-login .right-panel-active .login-form {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+    }
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transform: translateX(0);
+        transition: transform .6s ease-in-out;
+        z-index: 100;
+    }
+    .container-login .right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
+    .overlay {
+        position: relative;
+        color: white;
+        background: #209785;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        background: linear-gradient(to right, #0e5f53, #209785, #2bbaa5);
+        transform: translateX(0);
+        transition: .6s ease-in-out;
+    }
+    .container-login .right-panel-active .overlay {
+        transform: translateX(50%);
+    }
+    .overlay-left, .overlay-right {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 20px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+    }
+    .overlay-right {
+        transform: translateX(-20%);
+    }
+    .overlay-left {
+        right: 0;
+        transform: translateX(0%);
+    }
+    .container-login .right-panel-active .overlay-right {
+        transform: translateX(20);
+    }
+    .container-login .right-panel-active .overlay-left {
+        transform: translateX(20%);
+    }
+
+
+
+
+
+
+
+
+
+    /* profile busuk */
+    <?php
+session_start();
+require 'functionLogic.php';
+
+// agar tidak bisa diakses langsung melalui URL
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+}
+
+// mengambil user id dengan session
+$uname = $_SESSION['username'];
+$user_id = mysqli_query($connection, "SELECT id FROM user WHERE username = '$uname'");
+$id_self = mysqli_fetch_array($user_id);
+
+// mengambil user email dengan user id
+$email_user = mysqli_query($connection, "SELECT email FROM user WHERE username = '$uname'");
+$email = mysqli_fetch_array($email_user);
+
+// perintah memilih row pada tabel resort
+$resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$id_self[0]' ");
+
+// menhitung jumlah row pada table
+$count_data = mysqli_num_rows($resort_data);
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/da6c47344b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Profile</title>
+</head>
+
+<body class="profile-page">
+    <div class="prof-up">
+        <form action="home.php"><button class="back-button"><i class="fa-solid fa-arrow-left"></i></button></form>
+        <h2>My Profile</h2>
+    </div>
+    <div class="prof-inside">
+        <div class="my-profile">
+            <img src="img/profil.jpeg" alt="">
+            <div class="uname-profile">
+                <p>Username</p>
+                <label for="">
+                    <h3><?= $_SESSION['username'] ?></h3>
+                </label>
+            </div>
+            <div class="uname-profile email-prof">
+                <p>Email</p>
+                <label for="">
+                    <p><?= $email[0] ?></p>
+                </label>
+            </div>
+            <button class="editprof" onclick="popup()">edit</button>
+            <div class="logout-btn">
+                <?php if (isset($_SESSION['username'])) {
+                    echo "<form action='logout.php'><button>log out</button></form>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="booking-list">
+            <div class="act-bookinglist">
+                <div class="ticket-book">hello</div>
+
+                <?php
+            if ($count_data === 0) {
+                // echo "KOSONG";
+                $def = "<div class='the-booking'>
+                <h2>No Booking</h2>
+                </div>";
+            }
+            ?>
+
+            <div class="vertical-menu">
+                <?php if (isset($def)) echo $def; ?>
+                <?php while ($resort_data_fetch = mysqli_fetch_assoc($resort_data)) : ?>
+                    <?php
+                    if ($resort_data_fetch['resort_id'] == 1) {
+                        $room_type = "Standard";
+                    } else if ($resort_data_fetch['resort_id'] == 2) {
+                        $room_type = "Deluxe";
+                    } else if ($resort_data_fetch['resort_id'] == 3) {
+                        $room_type = "Suite";
+                    }
+                    ?>
+
+                    <div class="ticket-book">
+                        <h2>My Ticket</h2>//
+                        <div class="ticket-up">
+                            <h6>ticket type</h6>
+                        </div>
+                        <div class="ticket-up">
+                            <h3>Room Booking</h3>
+                            <h3><?= $room_type ?> Room</h3>
+                        </div>
+                        <div>
+                            <table class="ticket-inside">
+                                <tr>
+                                    <td>Check-in date</td>
+                                    <td>Check-out date</td>
+                                    <td>Total</td>
+                                    <td rowspan="2"><i class="bi bi-qr-code"></i></td>//
+                                </tr>
+                                <tr>
+                                    <td><?= $resort_data_fetch['date']; ?></td>
+                                    <td><?= $resort_data_fetch['date_out']; ?></td>
+                                    <td><?= $resort_data_fetch['total']; ?></td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+            </div>
+
+            <?php
+            // Re-fetching the data for the second loop
+            $resort_data = mysqli_query($connection, "SELECT * FROM resort_booking WHERE user_id_resort = '$id_self[0]' ");
+            ?>
+
+            <div class="rst-bookinglist">
+            <div class="ticket-book">hello</div>
+            <?php
+            if ($count_data === 0) {
+                // echo "KOSONG";
+                $def = "<div class='the-booking'>
+                <h2>No Booking</h2>
+                </div>";
+            }
+            ?>
+
+            <div class="vertical-menu">
+            
+                <?php if (isset($def)) echo $def; ?>
+                <?php while ($resort_data_fetch = mysqli_fetch_assoc($resort_data)) : ?>
+                    <?php
+                    if ($resort_data_fetch['resort_id'] == 1) {
+                        $room_type = "Standard";
+                    } else if ($resort_data_fetch['resort_id'] == 2) {
+                        $room_type = "Deluxe";
+                    } else if ($resort_data_fetch['resort_id'] == 3) {
+                        $room_type = "Suite";
+                    }
+                    ?>
+
+                    <div class="ticket-book">
+                        <h2>My Ticket</h2>//
+                        <div class="ticket-up">
+                            <h6>ticket type</h6>
+                        </div>
+                        <div class="ticket-up">
+                            <h3>Room Booking</h3>
+                            <h3><?= $room_type ?> Room</h3>
+                        </div>
+                        <div>
+                            <table class="ticket-inside">
+                                <tr>
+                                    <td>Check-in date</td>
+                                    <td>Check-out date</td>
+                                    <td>Total</td>
+                                    <td rowspan="2"><i class="bi bi-qr-code"></i></td>//
+                                </tr>
+                                <tr>
+                                    <td><?= $resort_data_fetch['date']; ?></td>
+                                    <td><?= $resort_data_fetch['date_out']; ?></td>
+                                    <td><?= $resort_data_fetch['total']; ?></td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!--<div class="mybooking">
+            <h2>My Bookings</h2>
+            <?php
+            if ($count_data === 0) {
+                // echo "KOSONG";
+                $def = "<div class='the-booking'>
+                <h2>No Booking</h2>
+                </div>";
+            }
+            ?>
+
+            <div class="vertical-menu">
+                <?php if (isset($def)) echo $def; ?>
+                <?php while ($resort_data_fetch = mysqli_fetch_assoc($resort_data)) : ?>
+                    <?php
+                    if ($resort_data_fetch['resort_id'] == 1) {
+                        $room_type = "Standard";
+                    } else if ($resort_data_fetch['resort_id'] == 2) {
+                        $room_type = "Deluxe";
+                    } else if ($resort_data_fetch['resort_id'] == 3) {
+                        $room_type = "Suite";
+                    }
+                    ?>
+
+                    <div class="ticket-book">
+                        <h2>My Ticket</h2>//
+                        <div class="ticket-up">
+                            <h6>ticket type</h6>
+                        </div>
+                        <div class="ticket-up">
+                            <h3>Room Booking</h3>
+                            <h3><?= $room_type ?> Room</h3>
+                        </div>
+                        <div>
+                            <table class="ticket-inside">
+                                <tr>
+                                    <td>Check-in date</td>
+                                    <td>Check-out date</td>
+                                    <td>Total</td>
+                                    <td rowspan="2"><i class="bi bi-qr-code"></i></td>//
+                                </tr>
+                                <tr>
+                                    <td><?= $resort_data_fetch['date']; ?></td>
+                                    <td><?= $resort_data_fetch['date_out']; ?></td>
+                                    <td><?= $resort_data_fetch['total']; ?></td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- modal edit profile  -->
+    <div class="popup-edit" id="popup-edit1">
+        <div class="overlay-edit"></div>
+        <div class="edit-content">
+            <div class="close-btn" onclick="popup()">&times;</div>
+            <h2>Edit My Profile</h2>
+            <form action="" enctype="multipart/form-data">
+                <img class="image-edit" src="img/profil.jpeg" alt="">
+                <input type="file" name="foto" id="foto">
+                <input type="text" name="username" class="input-field" placeholder="Username" required>
+                <button type="submit" class="login-button" name="save">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function popup() {
+            document.getElementById("popup-edit1").classList.toggle("active");
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <div class="act-list">
+        <h1 id="textabove">See Our Activity</h1>
+        <div class="act-item">
+            <div class="act-info-left">
+                <h2><b>Diving</b></h2>
+                <ul>
+                    <li>Explore vibrant underwater worlds</li>
+                    <li>Dive into history and uncover hidden treasures</li>
+                    <li>Encounter sea turtles, manta rays, and more</li>
+                    <li>Witness bioluminescent wonders under the stars</li>
+                    <li>Capture the magic with photography and videography</li>
+                </ul>
+                <h5><b>Start from Rp500.000/pax</b></h5>
+                <a class="button" onclick=modalPopUp(1)>Reserve</a>
+            </div>
+            <img src="img/dive.png" alt="">
+        </div>
+
+        <div class="act-item">
+            <div class="act-info-right">
+                <h2><b>Surfing</b></h2>
+                <ul>
+                    <li>Ride the waves and embrace the thrill of the ocean</li>
+                    <li>Catch the perfect wave and ride the rush.</li>
+                    <li>Balance, agility, and nature's harmony meet.</li>
+                    <li>Laughter, stories, bonds that never fade.s</li>
+                    <li>Capture the moment, freeze time with your lens.</li>
+                </ul>
+                <h5><b>Start from Rp170.000/pax</b></h5>
+                <a class="button" onclick=modalPopUp(2)>Reserve</a>
+            </div>
+            <img src="img/surf.png" alt="">
+        </div>
+
+        <div class="act-item">
+            <div class="act-info-left">
+                <h2><b>Snorkeling</b></h2>
+                <ul>
+                    <li>Discover vibrant marine life just below the surface.</li>
+                    <li>Feel the thrill of gliding through crystal-clear waters.</li>
+                    <li>Experience nature's beauty firsthand.</li>
+                    <li>Capture unforgettable moments.</li>
+                </ul>
+                <h5><b>Start from Rp220.000/pax</b></h5>
+                <a class="button" onclick=modalPopUp(3)>Reserve</a>
+            </div>
+            <img src="img/snor.png" alt="">
+        </div>
+
+        <div class="act-item">
+            <div class="act-info-right">
+                <h2><b>Jet Ski</b></h2>
+                <ul>
+                    <li>Feel the ocean's pulse as you race across waves.</li>
+                    <li>Savor the thrill of speeding through the water.</li>
+                    <li>Master control and agility with every twist and turn.</li>
+                    <li>Craft memories that echo the roar of engines, waves, and laughter.</li>
+                </ul>
+                <h5><b>Start from Rp150.000/pax</b></h5>
+                <a class="button" onclick=modalPopUp(4)>Reserve</a>
+            </div>
+            <img src="img/jet.png" alt="">
+        </div>
+    </div> -->

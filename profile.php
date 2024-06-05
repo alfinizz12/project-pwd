@@ -263,30 +263,35 @@ $count_data = mysqli_num_rows($resort_data);
         </div>
     </div>
 
-    <footer>
-        <div class="">
-            <div class="col-md-4">
-                <div class="items">
-                    <h3>Follow Us</h3>
-                    <div class="icons">
-                        <i class="bi bi-instagram"></i>
-                        <i class="bi bi-twitter-x"></i>
-                        <i class="bi bi-youtube"></i>
-                        <i class="bi bi-tiktok"></i>
-                    </div><br>
-                    <h6 style="font-size: 10px;">copyright <i class="bi-c-circle"></i> Bluebuk Creator Teams</h6>
-                    <br>
-                    <div class="creator">
-                        <h3>Creator</h3>
-                        <a href="creator">Aliyan Alfin</a><br>
-                        <a href="creator">Aurelia Rana</a>
-                    </div>
-                </div>
-
+     <footer>
+        <div class="footer-col">
+            <div>
+                <p>Our contact</p><br>
+                <a href="">Bluebuk@gmail.com</a>
+                <p>+1 086-43131</p>
             </div>
-
-        </div>
-
+            <div>
+                <p>Address</p><br>
+                <p>555 Elmwood Avenue,<br>
+                    Willow Creek, California <br> 98765
+                    United States</p>
+            </div>
+            <div class="items">
+                <p>Follow Us</p><br>
+                <div class="icons">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter-x"></i>
+                    <i class="bi bi-youtube"></i>
+                    <i class="bi bi-tiktok"></i>
+                </div><br>
+            </div>
+            <div class="creator">
+                <p>Creator</p><br>
+                    <a href="creator">Aliyan Alfin</a><br>
+                    <a href="creator">Aurelia Rana</a>
+            </div>
+        </div><br>
+        <h6 style="font-size: 10px;">copyright <i class="bi-c-circle"></i> Bluebuk Creator Teams</h6>
     </footer>
 
     <script>

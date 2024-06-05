@@ -177,7 +177,7 @@ if (!isset($_SESSION['id'])) {
     <p>Ready to experience the beauty and luxury of Bluebuk Beach & Resort? Explore our website to learn more about our accommodations, amenities, and <br>special offers. Book your stay today and start counting down the days until your dream beach getaway.</p>
   </div><br>
 
-  <h2 style="text-align: center;"><b>Our Customer Reviews</b></h2>
+  <h2 style="text-align: center; color : #2b77a4"><b>Our Customer Reviews</b></h2>
   <div class="scrollrating">
     <div class="col">
       <div class="card">
@@ -273,43 +273,36 @@ if (!isset($_SESSION['id'])) {
 
 
   <footer>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Contact Us</h3>
-        <a href="">Bluebook@gmail.com</a>
-        <p>086-43131</p>
-      </div>
-      <div class="col-md-4">
-        <h3>Address</h3>
-        <p>555 Elmwood Avenue, Apartment 301
-          Sunset Valley Apartments
-          Suite B-17
-          Willow Creek, California 98765
-          United States</p><br>
-        <br>
-        <h6 style="font-size: 10px;">copyright <i class="bi-c-circle"></i> Bluebuk Creator Teams</h6>
-      </div>
-      <div class="col-md-4">
-        <div class="items">
-          <h3>Follow Us</h3>
-          <div class="icons">
-            <i class="bi bi-instagram"></i>
-            <i class="bi bi-twitter-x"></i>
-            <i class="bi bi-youtube"></i>
-            <i class="bi bi-tiktok"></i>
-          </div><br>
-          <div class="creator">
-            <h3>Creator</h3>
-            <a href="creator">Aliyan Alfin</a><br>
-            <a href="creator">Aurelia Rana</a>
-          </div>
+        <div class="footer-col">
+            <div>
+                <p>Our contact</p>
+                <a href="">Bluebuk@gmail.com</a>
+                <p>+1 086-43131</p>
+            </div>
+            <div>
+                <p>Address</p>
+                <p>555 Elmwood Avenue,<br>
+                    Willow Creek, California <br> 98765
+                    United States</p>
+            </div>
+            <div class="items">
+                <p>Follow Us</p>
+                <div class="icons">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter-x"></i>
+                    <i class="bi bi-youtube"></i>
+                    <i class="bi bi-tiktok"></i>
+                </div><br>
+            </div>
+            <div class="creator">
+                <p>Creator</p>
+                    <a href="creator">Aliyan Alfin</a><br>
+                    <a href="creator">Aurelia Rana</a>
+            </div>
         </div>
+        <h6 style="font-size: 10px;">copyright <i class="bi-c-circle"></i> Bluebuk Creator Teams</h6>
+    </footer>
 
-      </div>
-
-    </div>
-
-  </footer>
 </body>
 
 <script>

@@ -1,0 +1,38 @@
+body {
+    background: url(img/bg3.png);
+}
+nav {
+    border-radius: 30px;
+    width: 95%;
+    height: 50px;
+    margin: 30px;
+    background: white;
+    color: #2bbaa5;
+    padding: 0;
+}
+nav ul li a{
+    display: block;
+    text-decoration: none;
+    /* padding: 5px 20px; */
+    margin-left: 4px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    color: #2bbaa5;
+    transition: 0.2s;
+}
+nav ul li a:hover {
+    color: #3d8a9e;
+    background: white;
+}
+nav ul li a.active {
+    color: #3d8a9e;
+    background: white;
+}
+.navbar-brand{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+
+
