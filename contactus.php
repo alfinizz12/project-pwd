@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'functionLogic.php';
 if (!isset($_SESSION['id'])) {
     $login_text = "Login";
@@ -13,6 +14,18 @@ if (!isset($_SESSION['id'])) {
     $profile = "<form action='profile.php'>
   <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
 </form>";
+}
+
+if (isset($_POST['submit'])) {
+    $nama = $_POST['name'];
+    $pesan = $_POST['feedback'];
+    $email = $img_profile->email;
+
+    $feedback = $connection->query("INSERT INTO feedback VALUES ('$nama', '$email', '$pesan')");
+
+    if(mysqli_affected_rows($connection)){
+        echo "<script> alert('Terima kasih telah mengirim feedback!'); window.location.href='contactus.php'; </script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -69,10 +82,10 @@ if (!isset($_SESSION['id'])) {
     <div class="box-contact card" style="padding-left: 10px; padding-right: 10px;">
         <div class="card-body">
             <h3 style="text-align: center;">We love to hear from you</h3><br>
-            <form action="mailto:alfinizzudien12@gmail.com" method="GET" enctype="text/plain">
-                <input class="form-control" type="text" placeholder="Name" required><br>
-                <textarea class="form-control" name="feedback" id="feedback" placeholder="your feedback" requireds></textarea><br>
-                <button class="btn" style="color: white; background: #2b77a4" type="submit">Submit</button>
+            <form action="" method="post">
+                <input class="form-control" name="name" type="text" placeholder="Name" required><br>
+                <textarea class="form-control" name="feedback" id="feedback" placeholder="your feedback" required></textarea><br>
+                <button class="btn" style="color: white; background: #2b77a4" name="submit" type="submit">Submit</button>
             </form>
         </div>
     </div>

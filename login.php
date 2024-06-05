@@ -9,6 +9,7 @@
 
     if(isset($_POST['register'])){
         if(register($_POST) > 0){
+            echo "<script> alert('Daftar Berhasil!');</script>";
             header ('Location: login.php');
             exit;
         }

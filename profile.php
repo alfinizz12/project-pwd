@@ -40,15 +40,24 @@ $user = $connection->query("SELECT * FROM user WHERE id = '$id'");
 $user_data = $user->fetch_object();
 
 // // perintah memilih row pada tabel resort
-$resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id  WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY date");
+$resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id  WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY rb.id");
 
-$activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY date");
+$activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY ab.id");
 
 if(isset($_POST['search'])){
     $search = $_POST['search'];
     $resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id WHERE (rb.name LIKE '%$search%' OR r.packet_name LIKE '%$search%' OR rb.payment LIKE '%$search%') AND (user_id_resort = $id AND status = 0)");
 
     $activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, ab.activity_ID, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE (ab.name LIKE '%$search%' OR a.act_name LIKE '%$search%' OR ab.payment LIKE '%$search%') AND (user_id_act = '$user_data->id' AND status = 0)");
+}
+
+$empty = $empty_act = " ";
+if(mysqli_num_rows($resort_data) == 0){
+    $empty = "Tidak ada pemesanan";
+}
+
+if (mysqli_num_rows($activity_data) == 0){
+    $empty_act = "Tidak ada pemesanan";
 }
 
 // menhitung jumlah row pada table
@@ -100,7 +109,7 @@ $count_data = mysqli_num_rows($resort_data);
             </div>
             <button class="editprof" onclick="popup()">Customize</button>
             <div class="logout-btn">
-                <form action='logout.php'><button onclick="return confirm('Yakin ingin logout? Anda akan dikembalikan ke landing page')">log out</button></form>
+                <form action='logout.php'><button onclick="return confirm('Yakin ingin logout? Anda akan dikembalikan ke landing page')">Logout</button></form>
             </div>
         </div>
 
@@ -108,11 +117,10 @@ $count_data = mysqli_num_rows($resort_data);
             <div class="act-bookinglist">
                 <h2 class="mybooking-title">My Activity Booking</h2>
                 <div class="vertical-menu">
-                    <?php if (isset($def)) echo $def ?>
+                    <?=$empty_act?>
                     <?php while ($activity_data_fetch = $activity_data->fetch_object()) : ?>
 
                         <?php
-
                         $date_now = new DateTime();
                         $date_check = new DateTime($activity_data_fetch->date);
                         $button_status = $button = $done_button = $done_status = "";
@@ -175,7 +183,7 @@ $count_data = mysqli_num_rows($resort_data);
             <div class="rst-bookinglist">
                 <h2 class="mybooking-title">My Resort Booking</h2>
                 <div class="vertical-menu">
-                    <?php if (isset($def)) echo $def; ?>
+                    <?=$empty?>
                     <?php while ($resort_data_fetch = $resort_data->fetch_object()) : ?>
 
                         <?php

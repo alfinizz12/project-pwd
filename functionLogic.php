@@ -33,7 +33,7 @@ function register($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // masukkan data ke dalam database 
-    $connection->query("INSERT INTO user VALUES('', '$email' , '$username', '$password', '')");
+    $connection->query("INSERT INTO user VALUES('', '$email' , '$username', '$password', 'profil.jpeg')");
 
     return mysqli_affected_rows($connection);
 }
