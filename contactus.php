@@ -1,10 +1,13 @@
 <?php
 session_start();
 
+
 include 'functionLogic.php';
 if (!isset($_SESSION['id'])) {
     $login_text = "Login";
     $login_class = "login-btn";
+    $must_login = "Login Needed";
+    $log_stat = "disabled";
 } else {
     $login_class = " ";
     $login_text = " ";
@@ -14,6 +17,8 @@ if (!isset($_SESSION['id'])) {
     $profile = "<form action='profile.php'>
   <button class='profile'>Profile <img class='imgprof' src='img/$img_profile->photo' alt=''></button>
 </form>";
+    $must_login = "Submit";
+    $log_stat = " ";
 }
 
 if (isset($_POST['submit'])) {
@@ -21,7 +26,7 @@ if (isset($_POST['submit'])) {
     $pesan = $_POST['feedback'];
     $email = $img_profile->email;
 
-    $feedback = $connection->query("INSERT INTO feedback VALUES ('$nama', '$email', '$pesan')");
+    $feedback = $connection->query("INSERT INTO feedback VALUES ('', '$nama', '$email', '$pesan')");
 
     if(mysqli_affected_rows($connection)){
         echo "<script> alert('Terima kasih telah mengirim feedback!'); window.location.href='contactus.php'; </script>";
@@ -84,8 +89,8 @@ if (isset($_POST['submit'])) {
             <h3 style="text-align: center;">We love to hear from you</h3><br>
             <form action="" method="post">
                 <input class="form-control" name="name" type="text" placeholder="Name" required><br>
-                <textarea class="form-control" name="feedback" id="feedback" placeholder="your feedback" required></textarea><br>
-                <button class="btn" style="color: white; background: #2b77a4" name="submit" type="submit">Submit</button>
+                <textarea class="form-control" name="feedback" id="feedback" placeholder="your feedback" rows="5" required></textarea><br>
+                <button class="btn" style="color: white; background: #2b77a4" name="submit" type="submit" <?=$log_stat?>><?=$must_login?></button>
             </form>
         </div>
     </div>

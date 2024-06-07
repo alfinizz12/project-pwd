@@ -269,9 +269,6 @@ if (!isset($_SESSION['id'])) {
     </div>
   </div>
 
-
-
-
   <footer>
         <div class="footer-col">
             <div>

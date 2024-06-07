@@ -40,9 +40,9 @@ $user = $connection->query("SELECT * FROM user WHERE id = '$id'");
 $user_data = $user->fetch_object();
 
 // // perintah memilih row pada tabel resort
-$resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id  WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY rb.id");
+$resort_data = $connection->query("SELECT rb.id, rb.name, rb.phone_num, rb.date, rb.date_out, rb.guest, rb.payment, rb.total, r.packet_name FROM resort_booking rb JOIN resort r ON resort_id = r.id  WHERE user_id_resort = '$user_data->id' AND NOT status = 1 ORDER BY rb.id DESC");
 
-$activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY ab.id");
+$activity_data = $connection->query("SELECT ab.id, ab.name, ab.phone_num, ab.date, ab.payment, a.act_name, a.harga FROM activity_booking ab JOIN activity a ON activity_ID = a.id WHERE user_id_act = '$user_data->id' AND NOT status = 1 ORDER BY ab.id DESC");
 
 if(isset($_POST['search'])){
     $search = $_POST['search'];
@@ -53,11 +53,15 @@ if(isset($_POST['search'])){
 
 $empty = $empty_act = " ";
 if(mysqli_num_rows($resort_data) == 0){
-    $empty = "Tidak ada pemesanan";
+    $empty = "<div class='ticket-book''>
+    <h2 style='margin: 70px; text-align:center; color:grey;'>No Booking</h2>
+</div>";
 }
 
 if (mysqli_num_rows($activity_data) == 0){
-    $empty_act = "Tidak ada pemesanan";
+    $empty_act = "<div class='ticket-book'>
+    <h2 style='margin: 70px; text-align:center; color:grey;'>No Booking</h2>
+</div>";
 }
 
 // menhitung jumlah row pada table
